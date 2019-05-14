@@ -1,2 +1,63 @@
-<h1>Tops#index</h1>
-<p>Find me in app/views/tops/index.html.erb</p>
+
+<div class="space">
+  <div class="title">POMO POMO</div>
+<div class="subtitle"> 25 minutes run! AND 5 minutes break!</div>
+
+<div class="text-center top-clock">
+  <div id="timer">25:00</div>
+</div>
+
+<script type="text/javascript">
+  'use strict'
+
+  let timer = document.getElementById('timer');
+  let min = document.getElementById('min');
+  let sec = document.getElementById('sec');
+  let startTime;
+  let timeLeft;
+  let timeToCountDown = 60 * 1000 * 25;
+  let timerId;
+  let isRunning = false;
+
+  function countDown(){
+    timerId = setTimeout(function(){
+      timeLeft = timeToCountDown - (Date.now() - startTime);
+      if(timeLeft < 0){
+        isRunning = false;
+        clearTimeout(timerId);
+        timeLeft = 0;
+        timeToCountDown = 0;
+        updateTimer(timeLeft);
+        return
+      }
+      updateTimer(timeLeft)
+      countDown();
+    },10);
+
+    elapsed_time.textContent = (Date.now() - startTime)
+  }
+
+  function updateTimer(t){
+    let d = new Date(t);
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    let timerString = m + ":" + s;
+    timer.textContent = timerString;
+  }
+
+  function timer_start(){
+    if (isRunning === false){
+      isRunning = true;
+      startTime = Date.now();
+      countDown();
+    }else{
+      isRunning = false;
+      timeToCountDown = timeLeft;
+      clearTimeout(timerId);
+    }
+
+  }
+  window.onload = timer_start;
+</script>
