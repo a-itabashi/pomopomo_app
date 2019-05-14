@@ -8,10 +8,58 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <div class="container">
     <body>
-      <%= yield %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">pomopomo</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="Navber">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">トップ</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          〇〇さんのアカウント情報
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">プロフィール</a>
+          <a class="dropdown-item" href="#">ログアウト</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">退会</a>
+        </div>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">再生履歴</a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="#">アプリの使い方</a>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          管理者メニュー
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">ユーザー一覧</a>
+          <a class="dropdown-item" href="#">ユーザー新規作成</a>
+        </div>
+      </li>
+      
+    
+    
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+      <div class="container">
+        <%= yield %>
+      </div>
     </body>
-  </div>
 </html>
