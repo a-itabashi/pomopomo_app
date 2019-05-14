@@ -12,7 +12,7 @@ class MusicsController < ApplicationController
     if params[:q] != ""
       q = params[:q]
       youtube = Google::Apis::YoutubeV3::YouTubeService.new
-      youtube.key = ENV['KEY']
+      youtube.key = ENV['YOUTUBE_KEY']
       youtube_response = youtube.list_searches("id,snippet", type: "video", q: q, max_results: 2)
       @youtube_response = youtube_response.items
     end

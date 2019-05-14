@@ -1,0 +1,18 @@
+<h1>検索</h1>
+<%= form_tag(musics_search_path, method: "post", remote: true) do %>
+  <%= label_tag(:q, "") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<div id="movies_area">
+    <!-- 検索されたqに応じて動画一覧表示するためのrender -->
+  <%= render partial: 'index', locals: { youtube_response: @youtube_response, mixcloud_response: @mixcloud_response } %>
+</div>
+
+
+
+<% if false %>
+<%= check_box_tag :mixcloud,true, true, {} %>
+<% end  %>

@@ -1,0 +1,81 @@
+<div id="timer">25:00</div>
+
+<!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
+<script type="text/javascript">
+document.addEventListener("turbolinks:load", function(){
+
+  let timer = document.getElementById('timer');
+  let startTime;
+  let timeLeft;
+  // let timeToCountDown = 60 * 1000 * 25;
+
+
+  let timeToCountDown = 60 * 100;
+  let timeToRest = 60 * 100;
+  let timerId;
+  let stopId
+  let isRunning = false;
+
+  let show_time = document.getElementById('show_time');
+
+  function countDown(){
+    timerId = setTimeout(function(){
+      timeLeft = timeToCountDown - (Date.now() - startTime);
+      // let data = (Date.now() - startTime);
+      // localStorage.setItem("local_data", JSON.stringify(data));
+
+      if(timeLeft < 0){
+        isRunning = false;
+        clearTimeout(timerId);
+        timeLeft = 0;
+        timeToCountDown = 0;
+        updateTimer(timeLeft);
+
+        console.log("音楽ストップ");
+        // リダイレクト
+        location.href="/musics/index";
+
+        // let show_time_data = localStorage.getItem('local_data');
+        // show_time.textContent = show_time_data;
+
+        return
+      }
+      updateTimer(timeLeft)
+      countDown();
+    },10);
+  }
+
+  function updateTimer(t){
+    let d = new Date(t);
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    let timerString = m + ":" + s;
+    timer.textContent = timerString;
+    document.title = timerString;
+  }
+
+  function timer_start(){
+    if (isRunning === false){
+      isRunning = true;
+      startTime = Date.now();
+      countDown();
+    }else{
+      isRunning = false;
+      timeToCountDown = timeLeft;
+      clearTimeout(timerId);
+    }
+  }
+
+  
+  window.onload = timer_start();
+  
+  console.log("音楽スタート");
+
+  window.addEventListener('popstate', function (e) {
+    clearTimeout(timerId);
+  });
+
+});
+</script>
