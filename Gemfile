@@ -11,7 +11,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
-
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
@@ -23,6 +22,14 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "rspec-rails"
+  gem 'spring-commands-rspec'
+  gem "factory_bot_rails"
+  gem 'faker'
+  gem 'capybara', '~> 2.15'
+  gem "database_cleaner"
+  gem "launchy"
+  gem 'selenium-webdriver'
 end
 
 group :development do 
@@ -33,8 +40,6 @@ group :development do
 end
 
 group :test do 
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
 
