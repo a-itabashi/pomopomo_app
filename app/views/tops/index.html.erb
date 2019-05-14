@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
-    <title>DesignApp</title>
+    <title>pomopomo(ポモポモ)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -50,8 +49,6 @@
       updateTimer(timeLeft)
       countDown();
     },10);
-
-    elapsed_time.textContent = (Date.now() - startTime)
   }
 
   function updateTimer(t){
