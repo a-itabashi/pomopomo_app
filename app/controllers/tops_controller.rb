@@ -1,3 +1,5 @@
 class TopsController < ApplicationController
-  def index; end
+  def index
+    render layout: false
+  end
 end

@@ -1,12 +1,29 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DesignApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<div class="space">
-  <div class="title">POMO POMO</div>
-<div class="subtitle"> 25 minutes run! AND 5 minutes break!</div>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+    <body>
+      <div class="container">
+        <div class="space">
+          <div class="title">POMO POMO</div>
+        <div class="subtitle"> 25 minutes run! AND 5 minutes break!</div>
 
-<div class="text-center top-clock">
-  <div id="timer">25:00</div>
-</div>
-
+        <div class="text-center top-clock">
+          <div id="timer">25:00</div>
+        </div>
+    </div>
+  </body>
+</html>
 <script type="text/javascript">
   'use strict'
 
