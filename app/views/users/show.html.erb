@@ -1,3 +1,6 @@
 <h1 class="text-center">プロフィール</h1>
 <p><%= @user.name %></p>
 <p><%= image_tag(@user.image_url) if @user.image_url %></p>
+
+
+<%= link_to "プロフィールを編集", edit_user_registration_path %>
