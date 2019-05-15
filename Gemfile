@@ -16,6 +16,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
+gem 'google-api-client', '~> 0.11'
 
 group :development, :test do 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

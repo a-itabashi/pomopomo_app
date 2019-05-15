@@ -1,0 +1,10 @@
+<h1>検索</h1>
+<%= form_tag(musics_search_path, method: "post", remote: true) do %>
+  <%= label_tag(:q, "") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<div id="movies_area">
+  <%= render partial: 'index', locals: { youtube_response: @youtube_response, mixcloud_response: @mixcloud_response } %>
+</div>

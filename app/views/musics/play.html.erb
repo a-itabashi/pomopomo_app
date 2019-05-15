@@ -1,0 +1,147 @@
+<div class="text-center top_clock">
+  <div id="timer">25:00</div>
+</div>
+<div class="controls">
+  <div input type="button" id="min">Min</div>
+  <div id="sec">Sec</div>
+  <div id="reset">Reset</div>
+  <div input type="button" id="start">Start</div>
+</div>
+
+<div id="show_time"></div>
+
+<h2><%= @title %></h2>
+<iframe id='iframe' width="560" height="315" 
+  src="<%= @videoid %>"
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+
+<%= audio_tag("alert.mp3", id:"audio") %>
+
+<% if false %>
+  <%= audio_tag("alert.mp3", :autoplay => true, :controls => true) %>
+<% end %>
+
+<!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
+<script type="text/javascript">
+document.addEventListener("turbolinks:load", function(){
+  'use strict'
+
+  let timer = document.getElementById('timer');
+  let min = document.getElementById('min');
+  let sec = document.getElementById('sec');
+  let reset = document.getElementById('reset');
+  let start = document.getElementById('start');
+
+  let audio = document.getElementById('audio');
+
+  // タイマーに関するプロパティを宣言
+  let startTime;
+  let timeLeft;
+  // 基本、秒数はミリ秒単位で考える
+  let timeToCountDown = 1000 * 60 * 0.2
+  let timerId;
+  let isRunning = false;
+
+  function countDown(){
+    timerId = setTimeout(function(){
+      // 残り時間　＝　設定したタイマー時間 - (今の時間 - スタートした時間)
+      timeLeft = timeToCountDown - (Date.now() - startTime);
+      // ===で実装しない理由は、誤差で、0秒ピッタリで評価できないから
+      if(timeLeft < 0){
+        isRunning = false;
+        start.textContent = "Start";
+        clearTimeout(timerId);
+        timeLeft = 0;
+        timeToCountDown = 0;
+        // ちゃんと0を表示するように、ここで明示してあげる
+        updateTimer(timeLeft);
+        // ここでreturnしないと、下の処理を続けてしまう
+
+        console.log("音楽ストップ");
+        // リダイレクト
+        location.href="/musics/rest";
+        
+        return
+      }
+      updateTimer(timeLeft)
+      countDown();
+    },10);
+  }
+
+  // ミリ秒を渡すと分や秒に直してくれる関数を作成
+  function updateTimer(t){
+    // Dateオブジェクトを生成
+    let d = new Date(t);
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    // よく使うテクニック
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    let timerString = m + ":" + s;
+    timer.textContent = timerString;
+    // タイトルに残り時間を設定
+    document.title = timerString;
+  }
+
+
+  //startボタンを押した際のイベントを設定
+  start.addEventListener("click", function(){
+    //この書き方は多用させる
+    if (isRunning === false){
+      isRunning = true;
+      
+      start.style.display="none";
+      min.style.display="none";
+      sec.style.display="none";
+      reset.style.display="none";
+
+      startTime = Date.now();
+      countDown();
+    }else{
+      isRunning = false;
+      start.textContent = "Start";
+      timeToCountDown = timeLeft;
+      clearTimeout(timerId);
+    }
+
+    setTimeout(function(){
+      audio.play();
+    }, (timeToCountDown - 5000))
+
+  });
+
+  //minボタンを押した際のイベントを設定
+  min.addEventListener("click", function(){
+    if (isRunning === true) {
+      return;
+    }
+    timeToCountDown += 60 * 1000;
+    // 60分を超えて操作しようとしたら、0に戻す
+    if (timeToCountDown >= 60 * 60 * 1000) {
+      timeToCountDown = 0;
+    }
+    updateTimer(timeToCountDown);
+  });
+
+  //secボタンを押した際のイベントを設定
+  sec.addEventListener("click", function(){
+    if (isRunning === true) {
+      return;
+    }
+    timeToCountDown += 1000;
+    if (timeToCountDown >= 60 * 60 * 1000) {
+      timeToCountDown = 0;
+    }
+    updateTimer(timeToCountDown);
+  });
+
+  reset.addEventListener("click", function(){
+    timeToCountDown = 0;
+    updateTimer(timeToCountDown);
+  });
+
+
+});
+</script>

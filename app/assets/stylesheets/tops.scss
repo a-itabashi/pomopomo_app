@@ -13,7 +13,7 @@ html{
   height: 100%;
 }
 
-body{
+.top_body{
   margin: 0;
   width: 100%;
   height: 100%;
@@ -21,7 +21,7 @@ body{
   background: #4C4C4C;
 }
 
-.container{
+.top_container{
   position:absolute;
   @include center();
 }
@@ -46,15 +46,14 @@ body{
   color:white;
 }
 
-.top-clock{
+.top_clock{
   margin-top: 10px;
   color:red;
 }
 
 #timer {
-  height: 120px;
-  font-size: 40px;
-  margin-bottom: 15px;
+  height: 80px;
+  font-size: 50px;
 }
 
 .controls{
