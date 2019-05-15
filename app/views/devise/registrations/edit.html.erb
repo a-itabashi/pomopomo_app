@@ -17,13 +17,13 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
     <% end %>
-    &nbsp
+    &nbsp    
     <div class="field">
-      <%= f.label :image_url, "プロフィール画像" %><br />
-       <p><%= image_tag(@user.image_url) if @user.image_url %></p>
-      
-    
-    </div>
+      <%= f.label :image_url, "プロフィール画像" %>
+      <%= f.file_field :image_url %>  
+      <%= image_tag @user.image_url.variant(resize:'100x100').processed if @user.image_url.attached? %>
+   </div>
+
 
 
 
