@@ -58,8 +58,8 @@
                   管理者メニュー
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">ユーザー一覧</a>
-                  <a class="dropdown-item" href="#">ユーザー新規作成</a>
+                  <%= link_to "ユーザー一覧",  admin_users_path, class: "dropdown-item" %>
+                  <%= link_to "ユーザー新規登録",   new_admin_user_path, class: "dropdown-item" %>
                 </div>
               </li>
             <% end %>
