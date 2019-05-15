@@ -4,6 +4,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  # アカウント編集後、プロフィール画面に移動する
+  def after_update_path_for(resource)
+    user_path(id: current_user.id)
+  end
+
   # ログイン時に新規登録画面に飛んだら、musics/indexに飛ぶ
   # def new
   #   redirect_to musics_index_path if user_signed_in?
