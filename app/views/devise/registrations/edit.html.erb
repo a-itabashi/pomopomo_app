@@ -19,15 +19,19 @@
     <% end %>
     &nbsp    
     <div class="field">
-      <%= f.label :image_url, "プロフィール画像" %>
-      <%= f.file_field :image_url %>  
-      <%= image_tag @user.image_url.variant(resize:'100x100').processed if @user.image_url.attached? %>
+      <!-- Oauth認証の場合 -->
+      <% if @user.provider.present? %>
+        <%= f.label :image_url, "プロフィール画像" %><br />
+        <%= image_tag @user.image_url, size: "100x100"  %>
+      <% end %>
+      <!-- Oauth認証で無い場合 -->
+      <% unless @user.provider.present? %>
+        <%= f.label :avatar, "プロフィール画像" %><br />      
+        <%= image_tag @user.avatar.variant(resize:'100x100').processed if @user.avatar.attached? %>
+        <%= f.file_field :avatar %>
+      <% end %>
    </div>
-
-
-
-
-
+    &nbsp 
     <div class="field">
       <%= f.label :description, "自己紹介文" %><br />
       <%= f.text_area :description, autofocus: true, class: "form-control" %>
