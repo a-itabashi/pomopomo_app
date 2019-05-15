@@ -27,17 +27,19 @@
               <a class="nav-link" href="#">トップ</a>
             </li>
 
+            <% if user_signed_in? %>
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                〇〇さんのアカウント情報
+                <%= current_user.name %>さんのアカウント情報
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">プロフィール</a>
-                <a class="dropdown-item" href="#">ログアウト</a>
+                <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">退会</a>
               </div>
             </li>
+            <% end %>
 
 
             <li class="nav-item">
@@ -65,6 +67,11 @@
       </nav>
       <div class="container">
         <%= yield %>
+      </div>
+      <div class="container-fluid">
+        <footer class="footer">
+          <p>Powered by Aguru Itabashi</p>
+        </footer>
       </div>
     </body>
 </html>
