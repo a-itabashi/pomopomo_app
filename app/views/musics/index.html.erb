@@ -1,9 +1,18 @@
-<h1>検索</h1>
-<%= form_tag(musics_search_path, method: "post", remote: true) do %>
-  <%= label_tag(:q, "") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
+
+<div class="row justify-content-center form_font">
+  <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+    <%= form_tag(musics_search_path, method: "post", remote: true) do %>
+      <div class="field">
+        <%= label_tag(:q, "") %>
+        <%= text_field_tag :q, nil, placeholder: '聞きたい音楽を検索してpomoしよう',class: "form-control search_form" %>
+      </div>
+      &nbsp
+      <div class="actions text-center">
+        <%= submit_tag "Search", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <div id="movies_area">
   <%= render partial: 'index', locals: { youtube_response: @youtube_response, mixcloud_response: @mixcloud_response } %>
