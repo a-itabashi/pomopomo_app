@@ -1,0 +1,21 @@
+<h1 class="text-center form_font"><%= current_user.name %>さんのプロフィール</h1>
+&nbsp
+<!-- Oauth認証の場合 -->
+<div class="text-center">
+  <% if @user.provider.present? %>
+    <%= image_tag @user.image_url, size: "100x100" %>
+  <% end %>
+  <!-- Oauth認証で無い場合 -->
+  <% unless @user.provider.present? %>  
+    <%= image_tag @user.avatar.variant(resize:'100x100').processed if @user.avatar.attached? %>
+  <% end %>
+  <h2 class="form_font"><%= @user.name %></h2>
+</div>
+&nbsp
+<div class="text-center form_font">
+  <p><%= @user.description %></p>
+</div>
+&nbsp
+<div class="text-center">
+  <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-dark btn-lg" %>
+</div>

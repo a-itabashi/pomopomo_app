@@ -1,43 +1,51 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1 class="text-center">プロフィールの編集</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="row justify-content-center form_font">
+  <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :name, "名前 or ニックネーム" %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+    </div>
+    &nbsp
+    <!-- Oauth認証の場合は表示しない -->
+    <% unless @user.provider.present? %>
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+    <% end %>
+    &nbsp    
+    <div class="field">
+      <!-- Oauth認証の場合 -->
+      <% if @user.provider.present? %>
+        <%= f.label :image_url, "プロフィール画像" %><br />
+        <%= image_tag @user.image_url, size: "100x100"  %>
+      <% end %>
+      <!-- Oauth認証で無い場合 -->
+      <% unless @user.provider.present? %>
+        <%= f.label :avatar, "プロフィール画像" %><br />      
+        <%= image_tag @user.avatar.variant(resize:'100x100').processed if @user.avatar.attached? %>
+        <%= f.file_field :avatar %>
+      <% end %>
+   </div>
+    &nbsp 
+    <div class="field">
+      <%= f.label :description, "自己紹介文" %><br />
+      <%= f.text_area :description, autofocus: true, class: "form-control" %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    
+    &nbsp
+    <div class="actions">
+      <%= f.submit "編集する", class: "btn btn-dark btn-lg" %>
+    </div>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
+&nbsp
+<div class="text-center">
+<%= link_to "戻る", :back %>
+</div>
