@@ -1,29 +1,41 @@
 <% if mixcloud_response.present? %>
+<div class="row">
   <% mixcloud_response.each do |list| %>
-    <div>
-      <%= list["name"] %>
-    </div>
-    <div>
-      <img src="<%= list["pictures"]["large"] %>">
-    </div>
-    <div>
+  <div class="col-md-4">
+    <div class="music_list">
       <% videoid = "https://www.mixcloud.com/widget/iframe/?feed=#{list['url']}" %>
-      <%= link_to "この曲でpomopomoスタート！", musics_play_path(title: list["name"], videoid: videoid) %>
+      <%= link_to(musics_play_path(title: list["name"], videoid: videoid)) do %>
+      <div>
+        <%= list["name"] %>
+      </div>
+      <div>
+        <img src="<%= list["pictures"]["large"] %>">
+      </div>
+      <% end %>
     </div>
+  </div>
   <% end %>
+</div>
 <% end %>
 
 <% if youtube_response.present? %>
+<div class="row">
   <% youtube_response.each do |list| %>
-    <div>
-      <%= list.snippet.title %>
-    </div>
-    <div>
-      <img src="<%= list.snippet.thumbnails.medium.url %>">
-    </div>
-    <div>
+  <div class="col-md-4">
+    <div class="music_list">
       <% videoid = "https://www.youtube.com/embed/#{list.id.video_id}" %>
-      <%= link_to "この曲でpomopomoスタート！", musics_play_path(title: list.snippet.title, videoid: videoid) %>
+      <%= link_to(musics_play_path(title: list.snippet.title, videoid: videoid)) do %>
+      <div>
+        <%= list.snippet.title %>
+      </div>
+      <div>
+        <img src="<%= list.snippet.thumbnails.medium.url %>">
+      </div>
+      <div>
+      </div>
+      <% end %>
     </div>
+  </div>
   <% end %>
+</div>
 <% end %>
