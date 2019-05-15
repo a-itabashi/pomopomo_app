@@ -4,6 +4,8 @@ require 'json'
 require 'google/apis/youtube_v3'
 
 class MusicsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
   end
 

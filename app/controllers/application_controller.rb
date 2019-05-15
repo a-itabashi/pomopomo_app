@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   include MusicsHelper
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :authenticate_user!
 
+  # protect_from_forgery with: :null_session
 
   def after_sign_in_path_for(resource)
     musics_index_path
@@ -12,10 +12,13 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
+
+  # def not_authenticate_user
+  #     redirect_to musics_index_path unless user_signed_in?
+  # end
 end

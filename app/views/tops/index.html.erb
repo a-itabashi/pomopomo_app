@@ -9,6 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
     <body class="top_body">
@@ -21,9 +22,18 @@
           <div id="timer">25:00</div>
         </div>
     </div>
-    <%= link_to 'Twitterログイン', user_twitter_omniauth_authorize_path  %>
-    <%= link_to 'Googleログイン', user_google_omniauth_authorize_path  %>
-
+    <div class="text-center">
+      <%= link_to 'Twitterアカウントでログイン', user_twitter_omniauth_authorize_path, class: "fab fa-twitter btn btn-primary btn-lg" %>
+    </div>
+    &nbsp
+    <div class="text-center">
+      <%= link_to 'Googleアカウントでログイン', user_google_omniauth_authorize_path, class: "fab fa-google btn btn-danger btn-lg" %>
+    </div>
+    &nbsp
+    <div class="text-center">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary btn-lg" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-secondary btn-lg" %>
+    </div>
   </body>
 </html>
 <script type="text/javascript">
