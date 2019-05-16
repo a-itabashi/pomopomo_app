@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'google/apis/youtube_v3'
+include MusicsHelper
 
 class MusicsController < ApplicationController
   before_action :authenticate_user!
@@ -24,5 +25,25 @@ class MusicsController < ApplicationController
   end
 
   def rest
+    create_or_update_studies
   end
+  
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
