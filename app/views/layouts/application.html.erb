@@ -21,10 +21,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="Navber">
-          <ul class="navbar-nav mr-auto">
+          <!-- <ul class="navbar-nav mr-auto"> -->
+            <ul class="navbar-nav nav-fill w-100 nav-justified">
 
             <li class="nav-item">
-              <a class="nav-link" href="#">トップ</a>
+              <%= link_to "トップ", musics_index_path ,class: "nav-link" %>
             </li>
 
             <% if user_signed_in? %>
