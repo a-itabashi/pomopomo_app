@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+
+
   def index
     # N+1問題を後ほど考慮する
     @users = User.all
@@ -10,6 +12,8 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(set_params)
+    uid_column = User.create_unique_string
+    @user.uid = uid_column
     if @user.save
       flash[:success] = "ユーザー登録に成功しました"
       redirect_to admin_users_path
@@ -23,7 +27,7 @@ class Admin::UsersController < ApplicationController
   private
   
   def set_params
-    params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin, :uid)
   end
 
 end
