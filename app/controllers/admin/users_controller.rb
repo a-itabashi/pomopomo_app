@@ -27,16 +27,27 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    @user.update(set_params)
+    if @user.save
+      flash[:success] = "プロフィールを編集しました"
+      redirect_to admin_users_path
+    else
+      render 'edit'
+    end
+
   end
 
   def destroy
+    @user.destroy
+    flash[:info] = "ユーザーを削除しました"
+    redirect_to admin_users_path
   end
 
 
   private
   
   def set_params
-    params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin, :uid)
+    params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin, :uid, :avatar)
   end
 
   def find_id_by_params

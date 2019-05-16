@@ -6,7 +6,7 @@
       <th>プロフィール画像</th>
       <th>ユーザー名</th>
       <th>メールアドレス</th>
-      <th>管理者権限の有無</th>
+      <th>管理者権限</th>
       <th>Oauth認証先</th>
       <th></th>
       <th></th>
@@ -30,7 +30,7 @@
         <td class="align-middle text-center"><%= user.admin ? "有り" : "ー" %></td>
         <td class="align-middle text-center"><%= user.provider.present? ? user.provider : "ー" %></td>
         <td class="align-middle text-center"><%= link_to "詳細", user %></td>
-        <td class="align-middle text-center"><%= link_to "編集", edit_admin_user_path(user.id) %></td>
+        <td class="align-middle text-center"><%= link_to "編集", edit_admin_user_path(user) %></td>
         <td class="align-middle text-center"><%= link_to "削除", admin_user_path(user), 
           method: :delete, data: {confirm: "削除して宜しいですか？"} %>
         </td>

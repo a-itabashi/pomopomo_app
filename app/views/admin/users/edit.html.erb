@@ -1,1 +1,55 @@
-edit.html.erb
+<h1 class="text-center">管理者専用 プロフィール編集画面</h1>
+
+<div class="row justify-content-center form_font">
+  <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+    <% resource = User.new unless resource %>
+    <%= form_with(model: @user,url: admin_user_path(@user),local: true, method: :put) do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :name, "名前 or ニックネーム" %><br />
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+    &nbsp
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+    &nbsp
+    <div class="field">
+      <!-- Oauth認証の場合 -->
+      <% if @user.provider.present? %>
+        <%= f.label :image_url, "プロフィール画像" %><br />
+        <%= image_tag @user.image_url, size: "100x100"  %>
+      <% end %>
+      <!-- Oauth認証で無い場合 -->
+      <% unless @user.provider.present? %>
+        <%= f.label :avatar, "プロフィール画像" %><br />      
+        <%= image_tag @user.avatar.variant(resize:'100x100').processed if @user.avatar.attached? %>
+        <%= f.file_field :avatar %>
+      <% end %>
+   </div>
+    &nbsp 
+    <div class="field">
+      <%= f.label :description, "自己紹介文" %><br />
+      <%= f.text_area :description, autofocus: true, class: "form-control input-mysize" %>
+    </div>
+    
+    &nbsp
+    <div class="field">
+      <label>
+        <%= f.radio_button :admin, "false" %> 管理者権限を与えない 
+      </label>
+      &nbsp
+      <label>
+        <%= f.radio_button :admin, "true" %> 管理者権限を与える</label>
+      </label>
+    </div>
+    &nbsp
+    <div class="actions">
+      <%= f.submit "編集する", class: "btn btn-dark btn-lg" %>
+    </div>
+   <% end %>
+  </div>
+</div>
