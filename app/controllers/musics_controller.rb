@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'google/apis/youtube_v3'
+include MusicsHelper
 
 class MusicsController < ApplicationController
   before_action :authenticate_user!
@@ -24,28 +25,9 @@ class MusicsController < ApplicationController
   end
 
   def rest
-    
-    if Study.where("user_id = ? and start_at = ?", current_user.id, Date.today).present?
-      study = Study.where("user_id = ? and start_at = ?", current_user.id, Time.zone.today).first
-      study_set = study.set
-      study_set = study_set + 1
-      study.update_attribute :set, study_set
-    else
-      study = Study.new
-      user = current_user.id
-      study.user_id = user
-      study.set = 1
-      study.start_at = Date.today
-      study.save!
-    end
+    create_or_update_studies
   end
-
-  private
-
-  def study_params
-
-  end
-
+  
 end
 
 

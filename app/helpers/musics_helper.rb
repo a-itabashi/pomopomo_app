@@ -18,4 +18,21 @@ module MusicsHelper
       @mixcloud_response = mixcloud_response["data"]
     end
   end
+
+  def create_or_update_studies    
+    if Study.where("user_id = ? and start_at = ?", current_user.id, Date.today).present?
+        study = Study.where("user_id = ? and start_at = ?", current_user.id, Time.zone.today).first
+        study_set = study.set
+        study_set = study_set + 1
+        study.update_attribute :set, study_set
+    else
+      study = Study.new
+      user = current_user.id
+      study.user_id = user
+      study.set = 1
+      study.start_at = Date.today
+      study.save!
+    end
+  end
+  
 end
