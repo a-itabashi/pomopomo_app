@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :find_id_by_params, only: %i[edit update destroy]
 
   def index
     # N+1問題を後ほど考慮する
@@ -23,11 +23,24 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
 
   private
   
   def set_params
     params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin, :uid)
+  end
+
+  def find_id_by_params
+    @user = User.find(params[:id])
   end
 
 end
