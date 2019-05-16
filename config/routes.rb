@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   get "musics/rest" 
 
   resources :users
+
+  namespace :admin do
+    resources :users
+  end
 end

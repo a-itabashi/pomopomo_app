@@ -30,6 +30,6 @@ class User < ApplicationRecord
   private
 
   def self.dumy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com" #POINT
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end

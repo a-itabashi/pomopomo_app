@@ -87,6 +87,29 @@ nav{
   height: 50px;
 }
 
+.x-scroll {
+overflow: auto;
+}
+.x-scroll table{
+width:100%;
+}
+.x-scroll::-webkit-scrollbar{
+height: 5px; 
+}
+.x-scroll::-webkit-scrollbar-track{
+background: #F1F1F1; 
+}
+.x-scroll::-webkit-scrollbar-thumb {
+background: #d6d6d6; 
+}
+.x-scroll td, .x-scroll th{
+white-space: nowrap;
+}
+
+.input-mysize {
+  height: 200px!important;
+}
+
 
 
 
