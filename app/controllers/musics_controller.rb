@@ -24,13 +24,9 @@ class MusicsController < ApplicationController
     @image_url = params[:image_url]
     @music_url = params[:music_url]
   
-    if create_musics
-      music_id = create_musics
-    else
-      music_id = Music.where("title = ? ", @title).pluck(:id)[0]
-    end
 
-    current_user.music_histories.create(music_id: music_id)
+    create_or_not_musics
+    current_user.music_histories.create(music_id: create_or_not_musics)
 
   end
 

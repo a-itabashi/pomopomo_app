@@ -34,6 +34,14 @@ module MusicsHelper
     end
   end
 
+  def create_or_not_musics
+    if Music.where("title = ? ", @title).pluck(:id).present?
+        music_id = Music.where("title = ? ", @title).pluck(:id)[0]
+    else
+      music_id = create_musics
+    end
+  end
+
   def create_musics  
     unless Music.where("title = ?", @title).present?
       music = Music.new
