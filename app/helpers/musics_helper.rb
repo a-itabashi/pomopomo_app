@@ -41,6 +41,7 @@ module MusicsHelper
       music.image_url = @image_url
       music.music_url = @music_url
       music.save!
+      music.id
     end
   end
   

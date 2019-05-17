@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :music_histories, only: [:create, :destroy]
+  resources :music_histories, only: %i[create]
 
   namespace :admin do
     resources :users
