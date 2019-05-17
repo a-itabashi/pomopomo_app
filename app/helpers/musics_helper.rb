@@ -27,11 +27,20 @@ module MusicsHelper
         study.update_attribute :set, study_set
     else
       study = Study.new
-      user = current_user.id
-      study.user_id = user
+      study.user_id = current_user.id
       study.set = 1
       study.start_at = Date.today
       study.save!
+    end
+  end
+
+  def create_musics  
+    unless Music.where("title = ?", @title).present?
+      music = Music.new
+      music.title = @title
+      music.image_url = @image_url
+      music.music_url = @music_url
+      music.save!
     end
   end
   
