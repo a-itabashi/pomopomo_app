@@ -3,8 +3,8 @@
   <% mixcloud_response.each do |list| %>
   <div class="col-md-4">
     <div class="music_list">
-      <% videoid = "https://www.mixcloud.com/widget/iframe/?feed=#{list['url']}" %>
-      <%= link_to(musics_play_path(title: list["name"], videoid: videoid)) do %>
+      <% music_url = "https://www.mixcloud.com/widget/iframe/?feed=#{list['url']}" %>
+      <%= link_to(musics_play_path(title: list["name"], image_url: list["pictures"]["large"], music_url: music_url)) do %>
       <div>
         <%= list["name"] %>
       </div>

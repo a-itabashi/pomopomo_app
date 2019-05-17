@@ -21,13 +21,15 @@ class MusicsController < ApplicationController
 
   def play
     @title = params[:title]
-    @videoid = params[:videoid]
+    @image_url = params[:image_url]
+    @music_url = params[:music_url]
+
+    create_musics
   end
 
   def rest
     create_or_update_studies
   end
-  
 end
 
 
