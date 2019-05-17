@@ -1,5 +1,14 @@
-<% @musics.each do |music|  %>
 
-  <%= music.title %>
-
+<div class="">
+<% @musics.each do |music|%>    
+  <div>
+    <%= image_tag music.music[:image_url], size: "80x80" if music.music[:image_url] %>
+    <%= music.music[:title] %>
+    <%= link_to "  再生する",musics_play_path(title: music.music[:title], image_url: music.music[:image_url], music_url: music.music[:music_url]), class: "fas fa-play-circle btn btn-dark btn-lg" %>
+  </div>
+  <div>
+  <em><%= music.created_at.strftime("再生：%Y年%m月%d日　%-H時%-M分%-S秒") %></em>
+  </div>
+  <hr>
 <% end %>
+</div>

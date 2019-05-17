@@ -39,7 +39,8 @@ class MusicsController < ApplicationController
   end
 
   def history
-    @musics = current_user.current_user_musics
+    @musics = current_user.music_histories.order(created_at: :desc)
+    @created_at = current_user.music_histories.pluck(:created_at).sort!.reverse!
   end
 end
 

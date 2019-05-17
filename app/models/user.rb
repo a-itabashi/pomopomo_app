@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :music_histories
 
   # current_userの再生履歴一覧
-  has_many :current_user_musics, through: :music_histories, source: :music
+  # has_many :current_user_musics, through: :music_histories, source: :music
 
   def self.create_unique_string
     SecureRandom.uuid
