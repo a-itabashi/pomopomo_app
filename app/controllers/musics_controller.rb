@@ -23,12 +23,15 @@ class MusicsController < ApplicationController
     @title = params[:title]
     @image_url = params[:image_url]
     @music_url = params[:music_url]
-
     create_musics
   end
 
   def rest
     create_or_update_studies
+  end
+
+  def history
+    @musics = current_user.current_user_musics
   end
 end
 

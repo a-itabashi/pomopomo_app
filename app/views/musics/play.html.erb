@@ -19,10 +19,6 @@
 
 <%= audio_tag("alert.mp3", id:"audio") %>
 
-<% if false %>
-  <%= audio_tag("alert.mp3", :autoplay => true, :controls => true) %>
-<% end %>
-
 <!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
@@ -61,9 +57,10 @@ document.addEventListener("turbolinks:load", function(){
 
         console.log("音楽ストップ");
         // リダイレクト
+        
         location.href="/musics/rest";
         
-        return
+        return;
       }
       updateTimer(timeLeft)
       countDown();
@@ -142,6 +139,7 @@ document.addEventListener("turbolinks:load", function(){
     updateTimer(timeToCountDown);
   });
 
+window.onbeforeunload = null;
 
 });
 </script>
