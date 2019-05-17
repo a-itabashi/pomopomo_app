@@ -3,7 +3,7 @@
 <!-- Oauth認証の場合 -->
 <div class="text-center">
   <% if @user.provider.present? %>
-    <%= image_tag @user.image_url, size: "100x100" %>
+    <%= image_tag @user.image_url, size: "100x100" if @user.image_url %>
   <% end %>
   <!-- Oauth認証で無い場合 -->
   <% unless @user.provider.present? %>  

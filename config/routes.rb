@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   get 'musics/index'
   post 'musics/search'
   get "musics/play"
-  get "musics/rest" 
+  get "musics/rest"
+  get "musics/history"
 
   resources :users
+
+  resources :music_histories, only: %i[create]
 
   namespace :admin do
     resources :users

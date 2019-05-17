@@ -1,8 +1,13 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google twitter)
-
   has_one_attached :avatar
+
+  has_many :studies, dependent: :destroy
+  has_many :music_histories
+
+  # current_userの再生履歴一覧
+  # has_many :current_user_musics, through: :music_histories, source: :music
 
   def self.create_unique_string
     SecureRandom.uuid

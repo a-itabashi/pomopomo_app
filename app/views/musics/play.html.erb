@@ -11,6 +11,7 @@
 <div id="show_time"></div>
 
 <h2><%= @title %></h2>
+
 <iframe id='iframe' width="560" height="315" 
   src="<%= @music_url %>"
   frameborder="0" 
@@ -18,10 +19,6 @@
 </iframe>
 
 <%= audio_tag("alert.mp3", id:"audio") %>
-
-<% if false %>
-  <%= audio_tag("alert.mp3", :autoplay => true, :controls => true) %>
-<% end %>
 
 <!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
 <script type="text/javascript">
@@ -35,6 +32,9 @@ document.addEventListener("turbolinks:load", function(){
   let start = document.getElementById('start');
 
   let audio = document.getElementById('audio');
+
+
+  let iframe = document.getElementById('iframe');
 
   // タイマーに関するプロパティを宣言
   let startTime;
@@ -61,9 +61,10 @@ document.addEventListener("turbolinks:load", function(){
 
         console.log("音楽ストップ");
         // リダイレクト
-        location.href="/musics/rest";
+        iframe.remove();
         
-        return
+        location.href="/musics/rest";
+        return;
       }
       updateTimer(timeLeft)
       countDown();
@@ -142,6 +143,7 @@ document.addEventListener("turbolinks:load", function(){
     updateTimer(timeToCountDown);
   });
 
+window.onbeforeunload = null;
 
 });
 </script>

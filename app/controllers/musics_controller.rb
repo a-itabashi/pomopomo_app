@@ -23,12 +23,20 @@ class MusicsController < ApplicationController
     @title = params[:title]
     @image_url = params[:image_url]
     @music_url = params[:music_url]
+  
 
-    create_musics
+    create_or_not_musics
+    current_user.music_histories.create(music_id: create_or_not_musics)
+
   end
 
   def rest
     create_or_update_studies
+  end
+
+  def history
+    @musics = current_user.music_histories.order(created_at: :desc)
+    @created_at = current_user.music_histories.pluck(:created_at).sort!.reverse!
   end
 end
 
