@@ -1,0 +1,11 @@
+<div>
+<%= form_with(model: Post.new ) do |f| %>
+  <div class="text-center form_font">
+    <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
+  </div>
+
+  <div class="actions text-center post_admit">
+    <%= f.submit "pomoをつぶやく", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :studies, dependent: :destroy
   has_many :music_histories
 
+  has_many :posts
+
   # current_userの再生履歴一覧
   # has_many :current_user_musics, through: :music_histories, source: :music
 
