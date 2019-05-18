@@ -1,6 +1,16 @@
 <div>
 <%= form_with(model: Post.new ) do |f| %>
   <div class="text-center form_font">
+
+  <% user = User.find_by(id: current_user.id) %>
+    <% if user.provider.present? %>
+      <%= image_tag user.image_url, size: "50x50" if user.image_url %>
+    <% end %>
+    <!-- Oauth認証で無い場合 -->
+    <% unless user.provider.present? %>  
+      <%= image_tag user.avatar.variant(resize:'50x50').processed if user.avatar.attached? %>
+    <% end %>
+
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
   </div>
 
