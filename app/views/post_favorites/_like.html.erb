@@ -1,0 +1,8 @@
+<% unless post.user_id == current_user.id %>
+  <% post_favorite = current_user.post_favorites.find_by(post_id: post.id) %>
+  <% if post_favorite.present? %>
+    <%= link_to "pomoを解除する", post_favorite_path(id: post_favorite.id, post_id: post.id), method: :delete, remote: true, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to  "pomoする", post_favorites_path(post_id: post.id), method: :post, remote: true, class: "btn btn-primary" %>
+  <% end %>
+<% end %>

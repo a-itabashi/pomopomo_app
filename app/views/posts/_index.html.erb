@@ -15,6 +15,13 @@
       </div>
       <div class="post_content">
         <%= post.content %>
+
+        <!-- いいね機能 -->
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render partial: 'post_favorites/like', locals: { post: post} %>
+        </div>
+
+
       </div>
       <div class="post_created_at">
         <em><%= post.created_at.strftime("%Y年%m月%d日　%-H時%-M分%-S秒") %></em>
