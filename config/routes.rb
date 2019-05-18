@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "musics/history"
 
   resources :users
-
+  resources :posts
   resources :music_histories, only: %i[create]
 
   namespace :admin do
