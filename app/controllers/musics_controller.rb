@@ -29,6 +29,9 @@ class MusicsController < ApplicationController
     create_or_not_musics
     current_user.music_histories.create(music_id: create_or_not_musics)
 
+    @posts = Post.all
+    @post = Post.new
+
   end
 
   def rest
