@@ -9,6 +9,8 @@ gem 'dotenv-rails'
 gem 'google-api-client', '~> 0.11'
 gem 'jbuilder', '~> 2.5'
 gem "jquery-rails"
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

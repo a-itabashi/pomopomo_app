@@ -38,8 +38,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                 <%= link_to "プロフィール", user_path(current_user.id),class: "dropdown-item" %>
-              <!--   <a class="dropdown-item" href="#">プロフィール</a> -->
-                <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: "dropdown-item", data: {confirm: "ログアウトしますか？"} %>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">退会</a>
               </div>

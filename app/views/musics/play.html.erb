@@ -1,24 +1,31 @@
 <div class="text-center top_clock">
   <div id="timer">25:00</div>
 </div>
-<div class="controls">
-  <div input type="button" id="min">Min</div>
-  <div id="sec">Sec</div>
-  <div id="reset">Reset</div>
-  <div input type="button" id="start">Start</div>
+<div class="controls text-center">
+  <div id="min" class="btn btn-dark">Min</div>
+  <div id="sec" class="btn btn-dark">Sec</div>
+  <div id="reset" class="btn btn-danger">Reset</div>
+  <div id="start" class="btn btn-primary">Start</div>
+</div>
+<hr>
+<div class="row justify-content-center">
+  <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+    <h2 class="text-center"><%= @title %></h2>
+    <div class="text-center embed-responsive embed-responsive-21by9">
+    <iframe class="embed-responsive-item" id='iframe' width="560" height="315" 
+      src="<%= @music_url %>"
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+    </div>
+  </div>
+</div>
+<hr>
+<div>
+  <%= render "shared/post_form" %>
 </div>
 
-<div id="show_time"></div>
-
-<h2><%= @title %></h2>
-
-<iframe id='iframe' width="560" height="315" 
-  src="<%= @music_url %>"
-  frameborder="0" 
-  allowfullscreen>
-</iframe>
-
-<%= audio_tag("alert.mp3", id:"audio") %>
+<%= audio_tag("/images/alert.mp3", id:"audio") %>
 
 <!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
 <script type="text/javascript">
