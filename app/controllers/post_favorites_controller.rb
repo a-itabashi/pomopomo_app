@@ -5,8 +5,6 @@ class PostFavoritesController < ApplicationController
       respond_to do |format|
         format.js{render :create}
       end
-  
-    # redirect_to posts_path
   end
 
   def destroy
@@ -15,6 +13,5 @@ class PostFavoritesController < ApplicationController
       respond_to do |format|
         format.js{render :destroy}
       end
-   
   end
 end
