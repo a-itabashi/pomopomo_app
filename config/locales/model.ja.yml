@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+      user: "ユーザー"
+    attributes:
+      post:
+        content: "投稿内容"
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        name: "名前"
+        description: "自己紹介"
+        

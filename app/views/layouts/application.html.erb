@@ -68,7 +68,7 @@
       </nav>
       <div class="container">
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <div class="alert alert-<%= message_type %> fadeOut_alert"><%= message %></div>
         <% end %>
         <%= yield %>
       </div>
@@ -77,5 +77,10 @@
           <p>Powered by Aguru Itabashi</p>
         </footer>
       </div>
+      <script type="text/javascript">
+        document.addEventListener("turbolinks:load", function(){
+          setTimeout("$('.fadeOut_alert').fadeOut('slow')", 3000) 
+        });
+      </script>
     </body>
 </html>
