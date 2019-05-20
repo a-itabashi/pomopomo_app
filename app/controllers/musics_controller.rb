@@ -8,10 +8,11 @@ class MusicsController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    @trends = Music.find(Music.pluck(:id).shuffle[0..10])
   end
 
   def search
-    youtube_api
+    # youtube_api
     mixcloud_api
 
     respond_to do |format|
