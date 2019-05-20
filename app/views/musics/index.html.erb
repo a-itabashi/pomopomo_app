@@ -12,16 +12,27 @@
     <% end %>
   </div>
 </div>
+&nbsp
 
 <!-- スライドショー -->
 <div class="row justify-content-center">
-   <div class="col-md-offset-1 col-md-10 col-md-offset-1">
-<div class="top__slide">
-  <div class="top__slide--01">content1</div>
-  <div class="top__slide--02">content2</div>
-  <div class="top__slide--03">content3</div>
-</div>
-</div>
+  <div class="col-md-offset-1 col-md-10  col-md-offset-1">
+    <div class="top__slide">
+      <% @trends.each do |trend| %>
+        <%= link_to(musics_play_path(title: trend.title, image_url: trend.image_url, music_url: trend.music_url)) do %>
+        
+        <div>
+          <%= trend.title %>
+        </div>
+        <div>
+          <img src="<%= trend.image_url %>">
+        </div>
+
+
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 &nbsp
@@ -35,8 +46,8 @@ $(function(){
   $('.top__slide').slick({
     accessibility: true,
     autoplay: true,
-    autoplaySpeed: 0,
-    speed: 5000,
+    autoplaySpeed: 2000,
+    speed: 3000,
     pauseOnHover: true,
     cssEase: 'ease',
     dots: false,
@@ -44,8 +55,27 @@ $(function(){
     vertical: false,
     swipe: true,
     slidesToShow: 2,
-    slidesToScroll: 1,
-    centerMode: true
+    slidesToScroll: 2,
+    centerMode: true,
+    arrows: true,
+    prevArrow: '<button class="slide_button slide-arrow prev-arrow"></button>',
+    nextArrow: '<button class="slide_button slide-arrow next-arrow"></button>',
+    responsive: [
+     {
+       breakpoint: 1024, // 768~1023px以下のサイズに適用
+          settings: {
+             slidesToShow:2,
+             slidesToScroll: 1,
+          }
+      }, {
+        breakpoint: 768, // 480〜767px以下のサイズに適用
+          settings: {
+             slidesToShow:1,
+             slidesToScroll: 1,
+             arrows: false,
+           }
+       }
+    ]
   });
 });
 </script>

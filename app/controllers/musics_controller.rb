@@ -8,6 +8,7 @@ class MusicsController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    @trends = Music.find(Music.pluck(:id).shuffle[0..10])
   end
 
   def search
