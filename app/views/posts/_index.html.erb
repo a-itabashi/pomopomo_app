@@ -4,14 +4,19 @@
     <div>
       <div>
         <% user = User.find_by(id: post.user_id) %>
-        <% if user.provider.present? %>
-          <%= image_tag user.image_url, size: "50x50" if user.image_url %>
+
+        <%= link_to(user_path(user), style: "color:black;")  do %>
+
+          <% if user.provider.present? %>
+            <%= image_tag user.image_url, size: "50x50" if user.image_url %>
+          <% end %>
+          <!-- Oauth認証で無い場合 -->
+          <% unless user.provider.present? %>  
+            <%= image_tag user.avatar.variant(resize:'50x50').processed if user.avatar.attached? %>
+          <% end %>
+          <span class="post_name"><%= user.name %></span>
+
         <% end %>
-        <!-- Oauth認証で無い場合 -->
-        <% unless user.provider.present? %>  
-          <%= image_tag user.avatar.variant(resize:'50x50').processed if user.avatar.attached? %>
-        <% end %>
-        <span class="post_name"><%= user.name %></span>
       </div>
       <div class="post_content">
         <%= post.content %>

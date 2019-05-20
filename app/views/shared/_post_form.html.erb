@@ -3,3 +3,5 @@
 <div id="posts_area">
   <%= render partial: 'posts/index', locals: { posts: @posts, post: @post} %>
 </div>
+
+<%= paginate @posts %>
