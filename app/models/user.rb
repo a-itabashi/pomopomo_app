@@ -1,16 +1,19 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google twitter)
-  has_one_attached :avatar
 
+  validates :name, presence: true, length: {maximum: 50}
+  validates :email, presence: true, length: {maximum: 255},
+    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+    uniqueness: true
+  before_save { email.downcase! }
+  validates :password, presence: true, length: {minimum: 6}
+
+  has_one_attached :avatar
   has_many :studies, dependent: :destroy
   has_many :music_histories
-
   has_many :posts
   has_many :post_favorites, dependent: :destroy
-
-  # current_userの再生履歴一覧
-  # has_many :current_user_musics, through: :music_histories, source: :music
 
   def self.create_unique_string
     SecureRandom.uuid

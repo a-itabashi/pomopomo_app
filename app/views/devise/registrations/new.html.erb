@@ -2,10 +2,12 @@
 
 <div class="row justify-content-center form_font">
   <div class="col-md-offset-3 col-md-6 col-md-offset-3">
-    <% resource = User.new unless resource %>
+    <% resource = @user unless resource %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="text-center">
+      <%= devise_error_messages %>
+    </div>
 
     <div class="field">
       <%= f.label :name, "名前 or ニックネーム" %><br />

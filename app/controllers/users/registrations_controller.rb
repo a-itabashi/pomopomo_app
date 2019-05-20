@@ -13,6 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
+  def new
+    @user = User.new
+    super
+  end
+
   # def update_resource(resource, params)
   #   resource.update_without_current_password(params)
   # end
