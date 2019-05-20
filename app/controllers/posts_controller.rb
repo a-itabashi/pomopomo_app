@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
+
   end
 
   def create
     @post = current_user.posts.build(set_params)
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     if @post.save
       respond_to do |format|
         format.js{render :index}

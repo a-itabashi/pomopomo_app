@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :music_histories, only: %i[create]
+  resources :post_favorites, only: %i[create destroy]
 
   namespace :admin do
     resources :users
