@@ -13,22 +13,20 @@
   </div>
 </div>
 &nbsp
-
+&nbsp
 <!-- スライドショー -->
+<h2 class="trend_music">Trend Music</h2>
 <div class="row justify-content-center">
   <div class="col-md-offset-1 col-md-10  col-md-offset-1">
     <div class="top__slide">
       <% @trends.each do |trend| %>
-        <%= link_to(musics_play_path(title: trend.title, image_url: trend.image_url, music_url: trend.music_url)) do %>
-        
+        <%= link_to(musics_play_path(title: trend.title, image_url: trend.image_url, music_url: trend.music_url)) do %>       
         <div>
           <%= trend.title %>
         </div>
         <div>
           <img src="<%= trend.image_url %>">
         </div>
-
-
         <% end %>
       <% end %>
     </div>
@@ -36,8 +34,16 @@
 </div>
 
 &nbsp
+<h2 class="search_music">Search Music</h2>
+<h4 class="search_music">(検索結果が表示されます)</h4>
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="col-sm-12 text-center">
 <div id="movies_area">
   <%= render partial: 'index', locals: { youtube_response: @youtube_response, mixcloud_response: @mixcloud_response } %>
+</div>
+</div>
+</div>
 </div>
 
 
