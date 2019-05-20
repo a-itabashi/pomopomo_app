@@ -28,6 +28,9 @@
         <span id="likes_buttons_<%= post.id %>">
           <%= render partial: 'post_favorites/like', locals: { post: post} %>
         </span>
+        <% if current_user.id == post.user_id %>
+          <%= link_to "削除する", post_path(post), method: :delete, data: {confirm: "削除して宜しいですか?"}, class: "btn btn-danger" %>
+        <% end %>
       </div>
     </div>
     <hr>
