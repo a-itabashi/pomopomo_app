@@ -19,7 +19,6 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:name]).to include("を入力してください")
     end
-
     it "名前が50文字を超えた場合、無効な状態かどうか" do
       user_sample = FactoryBot.build(:user, name: "a"*51)
       user_sample.valid?
@@ -39,24 +38,27 @@ RSpec.describe User, type: :model do
       expect(user.errors[:email]).to include("は255文字以内で入力してください")
     end
     it "メールアドレスが重複していれば無効な状態かどうか" do
-      user = FactoryBot.create(:user)
+      user
       user_sample = FactoryBot.build(:user, email: 'test@example.com')
       user_sample.valid?
       expect(user_sample.errors[:email]).to include("はすでに存在します")
     end
-    it 'メールアドレスの形式に誤りがあれば無効な状態かどうか' do
+    it "メールアドレスの形式に誤りがあれば無効な状態かどうか" do
       user = FactoryBot.build(:user, email: 'test')
       user.valid?
       expect(user.errors[:email]).to include('は不正な値です')
     end
   end
 
-  it 'パスワードが5文字以下なら無効な状態かどうか' do
-      user = FactoryBot.build(:user, password: 'testt')
-      user.valid?
-      expect(user.errors[:password]).to include('は6文字以上で入力してください')
+  it "パスワードが5文字以下なら無効な状態かどうか" do
+    user = FactoryBot.build(:user, password: 'testt')
+    user.valid?
+    expect(user.errors[:password]).to include('は6文字以上で入力してください')
   end
 
+  it "名前、メールアドレス、パスワードがあれば有効な状態てかどうか" do
+    user = User.new(name: "testman", email: "test@gmail.com", password: "testtest")
+    expect(user).to be_valid
+  end
 
- 
 end
