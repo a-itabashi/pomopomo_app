@@ -1,10 +1,9 @@
-<div>
-<%= form_with(model: Post.new ) do |f| %>
+<%= form_with(model:@post) do |f| %>
   <div class="text-center form_font">
 
   <% user = User.find_by(id: current_user.id) %>
     <% if user.provider.present? %>
-      <%= image_tag user.image_url, size: "50x50" if user.image_url %>
+      <%= image_tag user.image_url, size: "50x50",class: "circle_image" if user.image_url %>
     <% end %>
     <!-- Oauth認証で無い場合 -->
     <% unless user.provider.present? %>  
@@ -12,10 +11,12 @@
     <% end %>
 
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
+    <div class="text-right post_image">
+      <%= f.file_field :post_image %>
+    </div>
   </div>
 
   <div class="actions text-center post_admit">
     <%= f.submit "pomoをつぶやく", class: "btn btn-primary" %>
   </div>
 <% end %>
-</div>
