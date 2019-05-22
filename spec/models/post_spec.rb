@@ -4,7 +4,6 @@ RSpec.describe Post, type: :model do
   let(:post) {FactoryBot.create :post, :with_post_image}
 
   it "投稿、添付ファイルがあれば有効な状態かどうか)" do
-    
   end
 
   it "投稿、添付ファイル、両方無い場合、無効な状態かどうか" do
@@ -30,14 +29,10 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
 
-
-    it "添付ファイルの容量が5MBを超える場合、無効かどうか" do
-      
-      
+    it "添付ファイルの容量が5MBを超える場合、無効かどうか" do 
     end
 
-    it "添付ファイルの形式がjpg,jpeg,gif,png以外の場合、無効かどうか" do
-      
+    it "添付ファイルの形式がjpg,jpeg,gif,png以外の場合、無効かどうか" do  
     end
   end
 end

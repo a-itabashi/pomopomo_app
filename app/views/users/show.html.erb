@@ -7,7 +7,7 @@
   <% end %>
   <!-- Oauth認証で無い場合 -->
   <% unless @user.provider.present? %>  
-    <%= image_tag @user.avatar.variant(resize:'100x100').processed if @user.avatar.attached? %>
+    <%= image_tag(@user.image_url.url) if @user.image_url && @user.image_url.url %>
   <% end %>
   <h2 class="form_font"><%= @user.name %></h2>
 </div>
