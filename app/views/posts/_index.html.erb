@@ -1,16 +1,16 @@
 <div class="form_font">
 <% posts.each do |post| %>
-    <!-- Oauth認証の場合 -->
     <div>
       <div>
         <% user = User.find_by(id: post.user_id) %>
         <%= link_to(user_path(user), style: "color:black;")  do %>
+          <!-- Oauth認証の場合 -->
           <% if user.provider.present? %>
             <%= image_tag user.image_url, size: "50x50",class: "circle_image" if user.image_url %>
           <% end %>
           <!-- Oauth認証で無い場合 -->
           <% unless user.provider.present? %>  
-            <%= image_tag(user.image_url.url),class: "circle_image" if user.image_url && @user.image_url.url %>
+            <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
           <% end %>
           <span class="post_name"><%= user.name %></span>
         <% end %>

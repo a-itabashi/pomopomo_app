@@ -5,6 +5,6 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :post_favorites, dependent: :destroy
-  mount_uploader :post_image, ImageUploader
   
+  mount_uploader :post_image, ImageUploader  
 end

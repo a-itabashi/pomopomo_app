@@ -23,13 +23,13 @@
       <!-- Oauth認証の場合 -->
       <% if @user.provider.present? %>
         <%= f.label :image_url, "プロフィール画像" %><br />
-        <%= image_tag @user.image_url, size: "100x100"  %>
+        <%= image_tag @user.image_url, size: "100x100",class: "circle_image" if @user.image_url %>
       <% end %>
       <!-- Oauth認証で無い場合 -->
       <% unless @user.provider.present? %>
-        <%= f.label :image_url, "プロフィール画像" %><br />      
-        <%= image_tag(@user.image_url.url) if @user.image_url && @user.image_url.url %> 
-        <%= f.file_field :image_url %>
+        <%= f.label :avatar, "プロフィール画像" %><br />      
+        <%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %> 
+        <%= f.file_field :avatar %>
       <% end %>
    </div>
     &nbsp 

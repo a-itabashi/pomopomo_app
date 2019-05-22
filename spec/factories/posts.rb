@@ -1,10 +1,11 @@
 FactoryBot.define do
   factory :post do
     content {"test_text"}
-    trait :with_post_image do
-      post_image { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'image.jpg'), 'image/jpg') }
-    end
     user
+    # after :create do |b|
+    #   b.update_column(:post_image, "spec/fixtures/image.jpg")
+    # end
+    post_image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/image.jpg'), 'image/jpeg') }
   end
 
    # before(:build) do |attachment|

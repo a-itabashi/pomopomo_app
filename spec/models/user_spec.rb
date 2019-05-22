@@ -49,10 +49,12 @@ RSpec.describe User, type: :model do
     end
   end
 
-  it "パスワードが5文字以下なら無効な状態かどうか" do
-    user = FactoryBot.build(:user, password: 'testt')
-    user.valid?
-    expect(user.errors[:password]).to include('は6文字以上で入力してください')
+  describe "#password" do
+    it "パスワードが5文字以下なら無効な状態かどうか" do
+      user = FactoryBot.build(:user, password: 'testt')
+      user.valid?
+      expect(user.errors[:password]).to include('は6文字以上で入力してください')
+    end
   end
 
   it "名前、メールアドレス、パスワードがあれば有効な状態てかどうか" do

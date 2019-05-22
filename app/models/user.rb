@@ -9,11 +9,12 @@ class User < ApplicationRecord
   before_save { email.downcase! }
   validates :password, presence: true, length: {minimum: 6}
 
-  mount_uploader :image_url, ImageUploader
   has_many :studies, dependent: :destroy
   has_many :music_histories
   has_many :posts
   has_many :post_favorites, dependent: :destroy
+
+  mount_uploader :avatar, ImageUploader
 
   def self.create_unique_string
     SecureRandom.uuid
