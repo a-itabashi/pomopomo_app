@@ -1,16 +1,21 @@
-<div id="timer">25:00</div>
+<div class="text-center top_clock">
+  <div class="rest_timer" id="timer">25:00</div>
+  <div class="rest_time">Rest Time</div>
+</div>
+<%= audio_tag("/images/alert.mp3", id:"audio") %>
+<hr>
+<div>
+  <%= render "shared/post_form" %>
+</div>
 
-<!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
 
   let timer = document.getElementById('timer');
   let startTime;
   let timeLeft;
-  // let timeToCountDown = 60 * 1000 * 25;
 
-
-  let timeToCountDown = 60 * 100;
+  let timeToCountDown = 60 * 1000;
   let timeToRest = 60 * 100;
   let timerId;
   let stopId
@@ -21,8 +26,6 @@ document.addEventListener("turbolinks:load", function(){
   function countDown(){
     timerId = setTimeout(function(){
       timeLeft = timeToCountDown - (Date.now() - startTime);
-      // let data = (Date.now() - startTime);
-      // localStorage.setItem("local_data", JSON.stringify(data));
 
       if(timeLeft < 0){
         isRunning = false;
@@ -32,11 +35,7 @@ document.addEventListener("turbolinks:load", function(){
         updateTimer(timeLeft);
 
         console.log("音楽ストップ");
-        // リダイレクト
         location.href="/musics/index";
-
-        // let show_time_data = localStorage.getItem('local_data');
-        // show_time.textContent = show_time_data;
 
         return;
       }
@@ -68,11 +67,8 @@ document.addEventListener("turbolinks:load", function(){
     }
   }
 
-  
-  window.onload = timer_start();
-  
-  console.log("音楽スタート");
-
+  window.onload = timer_start(); 
+  console.log("タイマースタート");
   window.addEventListener('popstate', function (e) {
     clearTimeout(timerId);
   });
