@@ -20,4 +20,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params["password"] = current_user.encrypted_password unless params["password"]
     resource.update(params)
   end
-end
+end 

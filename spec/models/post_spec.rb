@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) {FactoryBot.create :post, :with_post_image}
+  let(:post) {FactoryBot.create :post}
 
-  it "投稿、添付ファイルがあれば有効な状態かどうか)" do
+  it "FactoryBotの検証(投稿、添付ファイルがあれば有効な状態かどうか)" do
+    post
+    expect(post).to be_valid
   end
 
   it "投稿、添付ファイル、両方無い場合、無効な状態かどうか" do
-    post = FactoryBot.build(:post, content: nil)
+    post = FactoryBot.build(:post, content: nil, post_image: nil)
     expect(post).to be_invalid
   end
 
@@ -27,13 +29,7 @@ RSpec.describe Post, type: :model do
     it "画像のみの場合、有効かどうか" do
       post = FactoryBot.build(:post, content: nil)
       expect(post).to be_valid
-    end
-
-    it "添付ファイルの容量が5MBを超える場合、無効かどうか" do 
-    end
-
-    it "添付ファイルの形式がjpg,jpeg,gif,png以外の場合、無効かどうか" do  
-    end
+    end 
   end
 end
 

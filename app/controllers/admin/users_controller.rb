@@ -1,6 +1,4 @@
 class Admin::UsersController < ApplicationController
-  before_action :find_id_by_params, only: %i[edit update destroy]
-
   def index
     # N+1問題を後ほど考慮する
     @users = User.all
@@ -23,21 +21,21 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-    @user.update(set_params)
-    if @user.save
-      flash[:success] = "プロフィールを編集しました"
-      redirect_to admin_users_path
-    else
-      render 'edit'
-    end
-
-  end
+  # def update
+  #   set_params["password"] = @user.encrypted_password
+  #   if @user.update(set_params)
+  #     flash[:success] = "プロフィールを編集しました"
+  #     redirect_to admin_users_path
+  #   else
+  #     render 'edit'
+  #   end
+  # end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
     flash[:info] = "ユーザーを削除しました"
     redirect_to admin_users_path
@@ -45,13 +43,20 @@ class Admin::UsersController < ApplicationController
 
 
   private
-  
-  def set_params
-    params.require(:user).permit(:name,:email, :password, :password_confirmation, :admin, :uid, :avatar)
-  end
 
-  def find_id_by_params
-    @user = User.find(params[:id])
-  end
+  # def update_resource(resource, params)
+  #   params["password"] = current_user.encrypted_password unless params["password"]
+  #   resource.update(params)
+  # 
+  #   end
+  
+  # def set_params
+  #   # params.require(:user).permit(:name, :email, :description, :password, :password_confirmation, :admin, :uid, :avatar)
+  #   params.fetch(:user,{}).permit(:name, :email, :description, :password, :password_confirmation, :admin, :uid, :avatar)
+  # end
+
+  # def find_id_by_params
+  #   @user = User.find(params[:id])
+  # end
 
 end
