@@ -7,7 +7,7 @@
     <% end %>
     <!-- Oauth認証で無い場合 -->
     <% unless user.provider.present? %>  
-      <%= image_tag user.avatar.variant(resize:'50x50').processed if user.avatar.attached? %>
+      <%= image_tag(user.image_url.url) if user.image_url && user.image_url.url %> 
     <% end %>
 
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>

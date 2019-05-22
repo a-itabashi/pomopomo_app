@@ -10,13 +10,13 @@
           <% end %>
           <!-- Oauth認証で無い場合 -->
           <% unless user.provider.present? %>  
-            <%= image_tag user.avatar.variant(resize:'50x50').processed, class: "circle_image" if user.avatar.attached? %>
+            <%= image_tag user.avatar, class: "circle_image" if user.avatar && user.avatar.url %>
           <% end %>
           <span class="post_name"><%= user.name %></span>
         <% end %>
       </div>
       <div class="post_image text-center">
-        <%= image_tag post.post_image.variant(resize:'100x100').processed if post.post_image.attached? %>        
+        <%= image_tag(post.post_image.url) if post.post_image && post.post_image.url %>        
       </div>
       <div class="post_content">
         <%= post.content %>

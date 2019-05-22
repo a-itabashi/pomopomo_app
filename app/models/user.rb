@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_save { email.downcase! }
   validates :password, presence: true, length: {minimum: 6}
 
-  has_one_attached :avatar
+  mount_uploader :image_url, ImageUploader
   has_many :studies, dependent: :destroy
   has_many :music_histories
   has_many :posts

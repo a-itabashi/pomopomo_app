@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :delete_post_image, only: %i[create]
 
   def index
     @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
@@ -28,9 +27,5 @@ class PostsController < ApplicationController
   def set_params
     params.require(:post).permit(:content, :post_image, :user_id)
   end
-
-  # リファクタリングを後ほど予定
-  def delete_post_image
-    ActiveStorage::Blob.unattached.find_each(&:purge)
-  end
+  
 end
