@@ -146,6 +146,35 @@ white-space: nowrap;
     }
 }
 
+.alert.alert-notice{
+  background-color: #55C500;
+  color: #white;
+  text-align: center;
+}
+
+.notice {
+  background-color: green;
+  color: #white;
+  text-align: center;
+}
+
+.alert {
+  background-color: red;
+  color: #white;
+  text-align: center;
+}
+
+.fadeOut_alert{
+  position: absolute;
+  opacity: 0.8;
+  top: 35px;
+  left:15px;
+  }
+
+.alert-danger{
+  border-radius: 10px;
+}
+
 
 
 

@@ -1,6 +1,7 @@
 #post_content{
   width: 90%;
   height: 80px;
+  margin-top: -5px;
 }
 
 .post_admit{
@@ -19,4 +20,16 @@
 
 .post_created_at{
   font-size: 10px;
+}
+
+.post_content{
+  word-wrap: break-word;
+}
+
+.post_image{
+  margin-top: 5px;
+}
+
+.circle_image{
+  border-radius: 50%;
 }

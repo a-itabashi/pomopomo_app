@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
     <body class="top_body">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> fadeOut_alert"><%= message %></div>
+      <% end %>
       <div class="top_container">
         <div class="space">
           <div class="title">POMO POMO</div>
@@ -37,7 +40,7 @@
   </body>
 </html>
 <script type="text/javascript">
-  'use strict'
+  document.addEventListener("turbolinks:load", function(){
 
   let timer = document.getElementById('timer');
   let min = document.getElementById('min');
@@ -102,4 +105,6 @@
     $(".title").css({"background-position": traX + "%" + traY + "%"});
   });
 });
+  setTimeout("$('.fadeOut_alert').fadeOut('slow')", 3000) 
+  });
 </script>

@@ -1,20 +1,17 @@
-<div class="row justify-content-center form_font">
+<div class="row justify-content-center form_font search_field">
   <div class="col-md-offset-3 col-md-6 col-md-offset-3">
     <%= form_tag(musics_search_path, method: "post", remote: true) do %>
       <div class="field">
         <%= label_tag(:q, "") %>
         <%= text_field_tag :q, nil, placeholder: '聞きたい音楽を検索してpomoしよう',class: "form-control search_form" %>
       </div>
-      &nbsp
-      <div class="actions text-center">
+      <div class="search_actions text-center">
         <%= submit_tag "Search", class: "btn btn-dark" %>
       </div>
     <% end %>
   </div>
 </div>
-&nbsp
-&nbsp
-&nbsp
+<hr>
 <!-- スライドショー -->
 <h2 class="trend_music">Trend Music</h2>
 <div class="row justify-content-center">
@@ -22,7 +19,7 @@
     <div class="top__slide">
       <% @trends.each do |trend| %>
         <%= link_to(musics_play_path(title: trend.title, image_url: trend.image_url, music_url: trend.music_url)) do %>       
-        <div>
+        <div class="title_style">
           <%= trend.title %>
         </div>
         <div>
@@ -33,8 +30,7 @@
     </div>
   </div>
 </div>
-
-&nbsp
+<hr>
 <h2 class="search_music">Search Result</h2>
 <h4 class="search_music">(検索結果が表示されます)</h4>
 <div class="row justify-content-center">
