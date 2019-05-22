@@ -28,7 +28,6 @@
 
 <%= audio_tag("/images/alert.mp3", id:"audio") %>
 
-<!-- scriptタグをここに書く。turbolinkが変な挙動を起こすため -->
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
   'use strict'
@@ -44,34 +43,27 @@ document.addEventListener("turbolinks:load", function(){
 
   let iframe = document.getElementById('iframe');
 
-  // タイマーに関するプロパティを宣言
   let startTime;
   let timeLeft;
-  // 基本、秒数はミリ秒単位で考える
   let timeToCountDown = 1000 * 60 * 0.2
   let timerId;
   let isRunning = false;
 
   function countDown(){
     timerId = setTimeout(function(){
-      // 残り時間　＝　設定したタイマー時間 - (今の時間 - スタートした時間)
       timeLeft = timeToCountDown - (Date.now() - startTime);
-      // ===で実装しない理由は、誤差で、0秒ピッタリで評価できないから
       if(timeLeft < 0){
         isRunning = false;
         start.textContent = "Start";
         clearTimeout(timerId);
         timeLeft = 0;
         timeToCountDown = 0;
-        // ちゃんと0を表示するように、ここで明示してあげる
         updateTimer(timeLeft);
-        // ここでreturnしないと、下の処理を続けてしまう
 
         console.log("音楽ストップ");
-        // リダイレクト
         iframe.remove();
-        
         location.href="/musics/rest";
+
         return;
       }
       updateTimer(timeLeft)
@@ -79,25 +71,18 @@ document.addEventListener("turbolinks:load", function(){
     },10);
   }
 
-  // ミリ秒を渡すと分や秒に直してくれる関数を作成
   function updateTimer(t){
-    // Dateオブジェクトを生成
     let d = new Date(t);
     let m = d.getMinutes();
     let s = d.getSeconds();
-    // よく使うテクニック
     m = ('0' + m).slice(-2);
     s = ('0' + s).slice(-2);
     let timerString = m + ":" + s;
     timer.textContent = timerString;
-    // タイトルに残り時間を設定
     document.title = timerString;
   }
 
-
-  //startボタンを押した際のイベントを設定
   start.addEventListener("click", function(){
-    //この書き方は多用させる
     if (isRunning === false){
       isRunning = true;
       
@@ -121,20 +106,17 @@ document.addEventListener("turbolinks:load", function(){
 
   });
 
-  //minボタンを押した際のイベントを設定
   min.addEventListener("click", function(){
     if (isRunning === true) {
       return;
     }
     timeToCountDown += 60 * 1000;
-    // 60分を超えて操作しようとしたら、0に戻す
     if (timeToCountDown >= 60 * 60 * 1000) {
       timeToCountDown = 0;
     }
     updateTimer(timeToCountDown);
   });
-
-  //secボタンを押した際のイベントを設定
+  
   sec.addEventListener("click", function(){
     if (isRunning === true) {
       return;
