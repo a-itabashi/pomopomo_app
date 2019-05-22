@@ -10,7 +10,7 @@
           <% end %>
           <!-- Oauth認証で無い場合 -->
           <% unless user.provider.present? %>  
-            <%= image_tag user.avatar, class: "circle_image" if user.avatar && user.avatar.url %>
+            <%= image_tag(user.image_url.url),class: "circle_image" if user.image_url && @user.image_url.url %>
           <% end %>
           <span class="post_name"><%= user.name %></span>
         <% end %>

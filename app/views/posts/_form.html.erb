@@ -3,11 +3,11 @@
 
   <% user = User.find_by(id: current_user.id) %>
     <% if user.provider.present? %>
-      <%= image_tag user.image_url, size: "50x50",class: "circle_image" if user.image_url %>
+      <%= image_tag user.image_url, size: "100x100", class: "circle_image" if user.image_url %>
     <% end %>
     <!-- Oauth認証で無い場合 -->
     <% unless user.provider.present? %>  
-      <%= image_tag(user.image_url.url) if user.image_url && user.image_url.url %> 
+      <%= image_tag(user.image_url.url) if user.image_url && user.image_url.url %>
     <% end %>
 
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
