@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   def validate_post_image
     return unless post_image.attached?
-    if post_image.blob.byte_size > 10000.kilobyte
+    if post_image.blob.byte_size > 5.megabytes
       post_image.purge
       errors.add(:post_image, I18n.t('errors.messages.file_too_large'))
     elsif !image?

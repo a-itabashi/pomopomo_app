@@ -1,7 +1,6 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) {FactoryBot.create(:user)}
-  let(:user_1) {FactoryBot.create(:user_1)}
   let(:admin_user) {FactoryBot.create(:admin_user)}
 
   describe "FactoryBotの検証" do
@@ -60,5 +59,4 @@ RSpec.describe User, type: :model do
     user = User.new(name: "testman", email: "test@gmail.com", password: "testtest")
     expect(user).to be_valid
   end
-
 end

@@ -9,33 +9,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_path(id: current_user.id)
   end
 
-  # def update_resource(resource, params)
-  #   resource.update_without_password(params)
-  # end
-
   def new
     @user = User.new
     super
   end
 
-
-
-  # def update_resource(resource, params)
-  #   resource.update_without_current_password(params)
-  # end
-
-  # 追記する
   protected
+  
   def update_resource(resource, params)
     params["password"] = current_user.encrypted_password unless params["password"]
     resource.update(params)
   end
-    # def update_resource(resource, params)
-    #   resource.update_without_password(params)
-    # end
-  # ログイン時に新規登録画面に飛んだら、musics/indexに飛ぶ
-  # def new
-  #   redirect_to musics_index_path if user_signed_in?
-  #   super
-  # end
 end
