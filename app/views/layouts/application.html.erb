@@ -75,9 +75,41 @@
           <p>Powered by Aguru Itabashi</p>
         </footer>
       </div>
+
+      <div id="back-to-top" style="position:fixed;right:25px;bottom:5px">
+        <a href="#"><i class="fas fa-arrow-alt-circle-up fa-5x"></i></a>
+      </div>
+      
       <script type="text/javascript">
         document.addEventListener("turbolinks:load", function(){
           setTimeout("$('.fadeOut_alert').fadeOut('slow')", 3000) 
+        
+            $(function(){
+            // #back-to-topを消す
+            $("#back-to-top").hide();
+
+            // スクロールが十分された時に#back-to-topを表示。スクロールされたら非表示
+            $(window).scroll(function(){
+              // this(window要素)がどれだけスクロールしたかをscrollTop()を使って値を取る
+              $('#pos').text($(this).scrollTop());
+              if ($(this).scrollTop() > 60){
+                $("#back-to-top").fadeIn();
+              }else{
+                $('#back-to-top').fadeOut();
+              }
+
+            });
+
+            //#back-to-topがクリックされたら上に戻る
+            // animateメソッドを使用
+            $('#back-to-top a').click(function() {
+                $('html, body').animate({
+                    scrollTop:0
+                }, 800);
+                return false;
+            });
+
+          });
         });
       </script>
     </body>
