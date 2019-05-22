@@ -35,6 +35,8 @@ class MusicsController < ApplicationController
   end
 
   def rest
+    @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
+    @post = Post.new
     create_or_update_studies
   end
 
