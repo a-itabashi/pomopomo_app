@@ -6,6 +6,9 @@ module MusicsHelper
         youtube = Google::Apis::YoutubeV3::YouTubeService.new
         youtube.key = ENV['YOUTUBE_KEY']
         youtube_response = youtube.list_searches("id,snippet", type: "video", q: q, max_results: 2)
+        if youtube_response.items.empty?
+          raise "youtube api errors"
+        end
         @youtube_response = youtube_response.items
     end
   end
@@ -15,6 +18,9 @@ module MusicsHelper
       q = params[:q]
       uri = URI.parse URI.encode("https://api.mixcloud.com/search/?q=#{q}&amp;type=cloudcast")
       mixcloud_response = JSON.load(Net::HTTP.get(uri))
+      if mixcloud_response["data"].empty?
+        raise "mixcloud api errors"
+      end
       @mixcloud_response = mixcloud_response["data"]
     end
   end
