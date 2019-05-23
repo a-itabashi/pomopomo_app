@@ -12,7 +12,7 @@ class MusicsController < ApplicationController
   end
 
   def search
-    # youtube_api
+    youtube_api
     mixcloud_api
 
     respond_to do |format|
