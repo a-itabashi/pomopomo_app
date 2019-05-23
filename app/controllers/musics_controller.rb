@@ -12,8 +12,8 @@ class MusicsController < ApplicationController
   end
 
   def search
-    # youtube_api
     mixcloud_api
+    # youtube_api
 
     respond_to do |format|
         format.js{render :index}
