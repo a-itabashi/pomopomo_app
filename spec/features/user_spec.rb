@@ -99,15 +99,10 @@ RSpec.feature "Users", type: :feature do
         end
       end
       context "他人の場合" do
-        scenario "プロフィールを見れないか" do
+        scenario "プロフィールを見れるか" do
           after_login_user
           visit user_path(admin_user.id)
-          expect(page).to have_content  "アクセスできません"
-        end
-        scenario "プロフィールを見れないか" do
-          after_login_user
-          visit user_path(admin_user.id)
-          expect(page).to have_content  "アクセスできません"
+          expect(page).to have_content  "adminさんのプロフィール"
         end
       end
     end
