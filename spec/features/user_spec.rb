@@ -75,7 +75,7 @@ RSpec.feature "Users", type: :feature do
           fill_in "自己紹介文", with: "test_userの紹介文を編集しました"
           click_on "編集する"
           expect(page).to have_content "アカウント情報を変更しました。" && "編集後のtest_user"
-          expect(page.html).to include "image.jpg"
+          expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
         end
       end
       context "管理者の場合" do
