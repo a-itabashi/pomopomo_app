@@ -25,6 +25,11 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
+
 group :development, :test do 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capistrano', '3.6.0'
