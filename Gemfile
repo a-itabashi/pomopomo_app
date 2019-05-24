@@ -13,6 +13,7 @@ gem "jquery-rails"
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'mini_magick'
+gem 'mini_racer', platforms: :ruby
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
@@ -22,9 +23,15 @@ gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn'
 
 group :development, :test do 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
   gem 'chromedriver-helper'
   gem 'pry-rails'
   gem 'better_errors'
