@@ -2,7 +2,7 @@
   <div class="rest_timer" id="timer">25:00</div>
   <div class="rest_time">Rest Time</div>
 </div>
-<%= audio_tag("/images/alert.mp3", id:"audio") %>
+<%= audio_tag("alert.mp3", id:"audio") %>
 <hr>
 <div>
   <%= render "shared/post_form" %>
@@ -15,7 +15,7 @@ document.addEventListener("turbolinks:load", function(){
   let startTime;
   let timeLeft;
 
-  let timeToCountDown = 60 * 1000;
+  let timeToCountDown = 60 * 100;
   let timeToRest = 60 * 100;
   let timerId;
   let stopId
@@ -65,6 +65,9 @@ document.addEventListener("turbolinks:load", function(){
       timeToCountDown = timeLeft;
       clearTimeout(timerId);
     }
+    setTimeout(function(){
+      audio.play();
+    }, (timeToCountDown - 5000))
   }
 
   window.onload = timer_start(); 
