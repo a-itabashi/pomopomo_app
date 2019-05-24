@@ -45,45 +45,47 @@
 
 
 <script type="text/javascript">
-document.addEventListener("turbolinks:load", function(){
-  $(function(){
-    $('.top__slide').slick({
-      accessibility: true,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      speed: 3000,
-      pauseOnHover: true,
-      cssEase: 'ease',
-      dots: false,
-      infinite: true,
-      vertical: false,
-      swipe: true,
-      slidesToShow: 2,
-      slidesToScroll: 2,
-      centerMode: true,
-      arrows: true,
-      prevArrow: '<button class="slide_button slide-arrow prev-arrow"></button>',
-      nextArrow: '<button class="slide_button slide-arrow next-arrow"></button>',
-      responsive: [
-       {
-         breakpoint: 1024, // 768~1023px以下のサイズに適用
-            settings: {
-               slidesToShow:2,
-               slidesToScroll: 1,
-            }
-        }, {
-          breakpoint: 768, // 480〜767px以下のサイズに適用
-            settings: {
-               slidesToShow:1,
-               slidesToScroll: 1,
-               centerMode: true,
-               centerPadding: '10px',
-               arrows: false,
-             }
-         }
-      ]
+document.addEventListener("turbolinks:load",function(){
+  window.addEventListener('load', function(){
+    $(function(){
+      $('.top__slide').slick({
+        accessibility: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        speed: 3000,
+        pauseOnHover: true,
+        cssEase: 'ease',
+        dots: false,
+        infinite: true,
+        vertical: false,
+        swipe: true,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        centerMode: true,
+        arrows: true,
+        prevArrow: '<button class="slide_button slide-arrow prev-arrow"></button>',
+        nextArrow: '<button class="slide_button slide-arrow next-arrow"></button>',
+        responsive: [
+         {
+           breakpoint: 1024, // 768~1023px以下のサイズに適用
+              settings: {
+                 slidesToShow:2,
+                 slidesToScroll: 1,
+              }
+          }, {
+            breakpoint: 768, // 480〜767px以下のサイズに適用
+              settings: {
+                 slidesToShow:1,
+                 slidesToScroll: 1,
+                 centerMode: true,
+                 centerPadding: '10px',
+                 arrows: false,
+               }
+           }
+        ]
+      });
     });
-  });
+  },false);
 });
 </script>
 
