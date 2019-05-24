@@ -17,14 +17,14 @@ RSpec.feature "Posts", type: :feature, js: true do
   end
   scenario "画像だけ、投稿ができるかどうか" do
     click_on "掲示板"
-    attach_file "画像投稿", "#{Rails.root}/spec/fixtures/image.jpg"
+    attach_file "post[post_image]", "#{Rails.root}/spec/fixtures/image.jpg"
     click_on "pomoをつぶやく"
     expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
   end
   scenario "画像、投稿、両方とも投稿ができるかどうか" do
     click_on "掲示板"
     fill_in 'post_content', with: "テスト投稿だよ"
-    attach_file "画像投稿", "#{Rails.root}/spec/fixtures/image.jpg"
+    attach_file "post[post_image]", "#{Rails.root}/spec/fixtures/image.jpg"
     click_on "pomoをつぶやく"
     expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
     expect(page).to have_content "テスト投稿だよ"
