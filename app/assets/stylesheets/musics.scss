@@ -1,3 +1,10 @@
+.top_slide {
+    display: none;
+}
+.top_slide.slick-initialized {
+    display: block;
+}
+
 .music_list{
   margin-bottom: 50px;
 }
@@ -9,6 +16,7 @@
 .search_actions{
   margin-top: 5px;
 }
+
 
 .slide_button{
   margin: 0;
