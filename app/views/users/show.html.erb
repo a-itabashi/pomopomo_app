@@ -16,9 +16,23 @@
   <p><%= @user.description %></p>
 </div>
 &nbsp
-
+&nbsp
 <% if current_user.id == params[:id].to_i %>
   <div class="text-center">
     <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-dark btn-lg" %>
   </div>
 <% end %>
+&nbsp
+<h1 class="text-center form_font">pomo記録表</h1>
+<h4 class="text-center form_font">(設定したタイマー通りpomoした数)</h4>
+<div class="x-scroll">
+  <%= month_calendar(attribute: :start_at, events: @studies, number_of_weeks: 8) do |date, studies| %>
+    <%= date %>
+    <% studies.each do |study| %>
+      <div class="text-center">
+        <span class="calender_daily_style"><%= study.set %></span>
+        <em><span class="form_font">pomo</span></em>
+      </div>
+    <% end %>
+  <% end %>
+</div>
