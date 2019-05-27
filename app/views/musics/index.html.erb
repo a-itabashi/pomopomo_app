@@ -30,6 +30,17 @@
     </div>
   </div>
 </div>
+
+<div id="mask" class="hidden">
+    <section id="modal" class="hidden">
+      <%= render "shared/how" %>
+      <div id="close">
+        閉じる
+      </div>
+    </section>
+  </div>
+
+
 <hr>
 <h2 class="search_music">Search Result</h2>
 <h4 class="search_music">(検索結果が表示されます)</h4>
@@ -46,7 +57,6 @@
 
 <script type="text/javascript">
 document.addEventListener("turbolinks:load",function(){
-  window.addEventListener('load', function(){
     $(function(){
       $('.top_slide').slick({
         accessibility: true,
@@ -85,7 +95,6 @@ document.addEventListener("turbolinks:load",function(){
         ]
       });
     });
-  },false);
 });
 </script>
 
