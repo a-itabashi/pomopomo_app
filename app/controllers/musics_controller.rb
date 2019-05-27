@@ -40,6 +40,9 @@ class MusicsController < ApplicationController
     create_or_update_studies
   end
 
+  def how
+  end
+
   def history
     @musics = current_user.music_histories.order(created_at: :desc).page(params[:page]).per(10)
     @created_at = current_user.music_histories.pluck(:created_at).sort!.reverse!

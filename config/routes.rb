@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "musics/play"
   get "musics/rest"
   get "musics/history"
+  get "musics/how"
 
   resources :users
   resources :posts
