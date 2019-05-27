@@ -175,6 +175,65 @@ white-space: nowrap;
   border-radius: 10px;
 }
 
+@media screen and (max-width:992px) {
+  .text-center.step-content.ml-5{
+    margin:0!important;
+  }
+}
+
+#open, #close{
+  cursor: pointer;
+  width:200px;
+  border:1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  padding: 12px 0;
+  /*上に30px,左右はauto,下は0*/
+  margin:30px auto 0;
+}
+
+#mask{
+  background: rgba(0,0,0,0.4);
+  position: fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  z-index: 1;
+}
+
+#modal{
+  background: black;
+  width:90%;
+  height:90%;
+  overflow: scroll;
+  padding:20px;
+  border-radius: 5px;
+  position: absolute;
+  top:40px;
+  left:0;
+  right:0;
+  margin:0 auto;
+  z-index: 2;
+}
+
+#modal > ul{
+  list-style: none;
+  text-align: center;
+  padding:0;
+}
+
+#mask.hidden{
+  display: none;
+}
+
+#modal.hidden{
+  transform: translate(0, -500px);
+}
+
+.how_sub_title{
+  margin:35px;
+}
 
 
 
