@@ -164,6 +164,10 @@ white-space: nowrap;
   text-align: center;
 }
 
+.how-title{
+  font-size: 50px;
+}
+
 .fadeOut_alert{
   position: absolute;
   opacity: 0.8;
@@ -179,6 +183,13 @@ white-space: nowrap;
   .text-center.step-content.ml-5{
     margin:0!important;
   }
+  .step-number{
+    margin-top: 40px;
+  }
+}
+
+.text-center.step-content.ml-5{
+  margin:0!important;
 }
 
 #open, #close{
@@ -232,7 +243,11 @@ white-space: nowrap;
 }
 
 .how_sub_title{
-  margin:35px;
+  margin-top:30px;
+}
+
+.container_how{
+  padding-top: 40px;
 }
 
 
