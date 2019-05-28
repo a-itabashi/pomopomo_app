@@ -27,10 +27,10 @@
 <h4 class="text-center form_font">(設定したタイマー通り学習した回数)</h4>
 <div class="x-scroll">
   <%= month_calendar(attribute: :start_at, events: @studies, number_of_weeks: 8) do |date, studies| %>
-    <%= date %>
+    <%= date.day %>
     <% studies.each do |study| %>
-      <div class="text-center">
-        <span class="calender_daily_style"><%= study.set %></span>
+      <div class="text-center"> 
+        <span class="calender_daily_style form_font"><%= study.set %></span>
         <em><span class="form_font">pomo</span></em>
       </div>
     <% end %>

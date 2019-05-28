@@ -4,16 +4,21 @@
   <%= render partial: 'posts/index', locals: { posts: @posts, post: @post} %>
 </div>
 
-<%= paginate @posts %>
-
+<% if controller.controller_name == "posts"%>
+  <div class="paginate_link">
+    <%= paginate @posts %>
+  </div>
+<% end %>
 
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
-  $(function(){
-    setInterval(update, 10000);
-    console.log("同期スタート");
-  });
+  if(!document.URL.match('page')){
 
+    $(function(){
+      setInterval(update, 5000);
+      console.log("同期スタート");
+    });
+  }
   function update(){
     $.ajax({
       url: '/posts', 
