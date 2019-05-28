@@ -36,9 +36,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                   <%= link_to "プロフィール", user_path(current_user.id),class: "dropdown-item", data: {"turbolinks" => false}  %>
-                  <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: "dropdown-item", data: {confirm: "ログアウトしますか？"}, data: {"turbolinks" => false}  %>
+                  <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: "dropdown-item", data: {confirm: "ログアウトしますか？"} %>
                   <div class="dropdown-divider"></div>
-                  <%= link_to "退会",  user_registration_path, method: :delete, class: "dropdown-item", data: {confirm: "本当に退会しますか？"}, data: {"turbolinks" => false}  %>
+                  <%= link_to "退会",  user_registration_path, method: :delete, class: "dropdown-item", data: {confirm: "本当に退会しますか？"} %>
                 </div>
               </li>
               <li class="nav-item">
