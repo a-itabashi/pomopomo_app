@@ -1,9 +1,7 @@
 module ApplicationHelper
-  # デバイスのエラーメッセージ出力メソッド
   def devise_error_messages
     return "" if resource.errors.empty?
     html = ""
-    # エラーメッセージ用のHTMLを生成
     messages = resource.errors.full_messages.each do |msg|
       html += <<-EOF
         <div class="error_field alert-danger" role="alert">
@@ -12,5 +10,14 @@ module ApplicationHelper
       EOF
     end
     html.html_safe
+  end
+
+  def full_title(page_title = '') 
+    base_title = "pomopomo"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " | " + base_title
+    end
   end
 end
