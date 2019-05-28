@@ -3,7 +3,6 @@ require 'uri'
 require 'json'
 require 'google/apis/youtube_v3'
 include MusicsHelper
-
 class MusicsController < ApplicationController
   before_action :authenticate_user!
   
@@ -14,7 +13,6 @@ class MusicsController < ApplicationController
   def search
     mixcloud_api
     youtube_api
-
     respond_to do |format|
         format.js{render :index}
     end
