@@ -15,13 +15,15 @@ CarrierWave.configure do |config|
 
   config.fog_public     = true
   config.fog_attributes = {'Cache-Control' => 'public, max-age=86400'}
+  config.fog_directory = 'pomopomo-development'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pomopomo-development'
 
-  case Rails.env
-    when 'production'
-      config.fog_directory = 'pomopomo-production'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pomopomo-production'
-    when 'development'
-      config.fog_directory = 'pomopomo-development'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pomopomo-development'
-  end
+  # case Rails.env
+  #   when 'production'
+  #     config.fog_directory = 'pomopomo-production'
+  #     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pomopomo-production'
+  #   when 'development'
+  #     config.fog_directory = 'pomopomo-development'
+  #     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pomopomo-development'
+  # end
 end
