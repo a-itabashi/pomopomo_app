@@ -30,8 +30,13 @@
       <% unless @user.provider.present? %>
         <%= f.label :avatar, "プロフィール画像" %><br />      
         <%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %> 
-        <%= f.file_field :avatar %>
+        &nbsp 
+        <span><%= f.file_field :avatar, class: "file" %></span>
       <% end %>
+      &nbsp 
+      &nbsp
+      <p class="your_preview">(選択した画像のプレビュー)</p>
+      <div class="img_avatar"></div>
    </div>
     &nbsp 
     <div class="field">
@@ -49,3 +54,54 @@
 <div class="text-center">
   <%= link_to "戻る", :back, class: "btn btn-primary" %>
 </div>
+
+<script type="text/javascript">
+$(document).on('turbolinks:load', function(){
+  $(document).ready(function () {
+    let view_box = $('.img_avatar');
+     
+    $(".file").on('change', function(){
+       var fileprop = $(this).prop('files')[0],
+           find_img = $(this).next('img'),
+           fileRdr = new FileReader();
+       
+       if(find_img.length){
+          find_img.nextAll().remove();
+          find_img.remove();
+       }
+       
+      var img = '<img width="100" alt="" class="img_view"><a href="#" class="img_del">プレビューを削除する</a>';
+      view_box.append(img);
+
+       
+      fileRdr.onload = function() {    
+        view_box.find('img').attr('src', fileRdr.result);
+        img_del(view_box); 
+      }
+      fileRdr.readAsDataURL(fileprop);  
+
+
+      if($(".img_view").length){
+        $(".file").hide();
+      }
+
+      $(".your_preview").show();
+
+    });
+     
+    function img_del(target)
+    {
+       target.find("a.img_del").on('click',function(){
+         $(this).parent().find('input[type=file]').val('');
+         $(this).parent().find('.img_view, br').remove();
+         $(this).remove();
+         $("#user_avatar").val("");
+         $(".file").show();
+         $(".your_preview").hide();
+   
+        return false;
+      });
+    }  
+  });
+});
+</script>

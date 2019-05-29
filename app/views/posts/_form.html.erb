@@ -13,7 +13,9 @@
 
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
     <div class="text-right post_image">
-      <%= f.file_field :post_image %>
+      <%= f.file_field :post_image, class:"file" %>
+      <p class="your_preview">(選択した画像のプレビュー)</p>
+      <div class="img_avatar"></div>
     </div>
   </div>
 
