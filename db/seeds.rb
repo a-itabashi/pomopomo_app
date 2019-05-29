@@ -9,6 +9,11 @@
                password_confirmation: password,
                uid: uid,
                )
+  content = Faker::Music.album
+  user = User.last
+  Post.create!(content: content,
+               user_id: user.id
+              )
 end
 
 1.times do |n|
@@ -30,15 +35,4 @@ User.create!(name: "testユーザー",
              password_confirmation: "testtest",
              uid: uid,
             )
-end
-
-20.times do |n|
-  i = 1
-  content = Faker::Music.album
-  user_id = i
-  Post.create!(
-    content: content,
-    user_id: user_id,
-    )
-  i += 1
 end
