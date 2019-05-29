@@ -16,9 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   
-    def update_resource(resource, params)
-      params["password"] = current_user.encrypted_password unless params["password"]
-      resource.update(params)
-    end
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
 end 

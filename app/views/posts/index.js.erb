@@ -1,3 +1,11 @@
 $("#posts_area").html("<%= j(render 'posts/index', { posts: @posts, post: @post }) %>");
 $("#post_content").val('');
 $("#post_post_image").val('');
+$(".img_view").remove();
+$(".img_del").remove();
+$(".your_preview").hide();
+$(".file").show();
+
+
+
+
