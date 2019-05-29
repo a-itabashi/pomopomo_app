@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Posts", type: :feature, js: true do
- # name: "test_user", email:"test@example.com", password: "testtest"
+  # name: "test_user", email:"test@example.com", password: "testtest"
   given!(:user) {FactoryBot.create(:user)}
   # name: "admin", email:"admin@example.com", password: "adminadmin"
   given!(:admin_user) {FactoryBot.create(:admin_user)}
