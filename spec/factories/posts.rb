@@ -5,8 +5,8 @@ FactoryBot.define do
     post_image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/image.jpg'), 'image/jpeg') }
   end
 
-  factory :post_admin, class: Post do
-    content {"admin_text"}
-    user {admin_user.id}
-  end 
+  factory :post_2, class: Post do
+    content {"test_text_2"}
+    user { User.first || create(:admin_user)}
+  end
 end

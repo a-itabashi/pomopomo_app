@@ -32,24 +32,24 @@ gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 
 group :development, :test do 
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
+  gem 'capybara', '~> 2.15'
   gem 'chromedriver-helper'
-  gem 'pry-rails'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem "rspec-rails"
-  gem 'spring-commands-rspec'
+  gem "database_cleaner"
   gem "factory_bot_rails"
   gem 'faker'
-  gem 'capybara', '~> 2.15'
-  gem "database_cleaner"
   gem "launchy"
+  gem 'pry-rails'
+  gem "rspec-rails"
   gem 'selenium-webdriver'
+  gem 'spring-commands-rspec'
 end
 
 group :development do 

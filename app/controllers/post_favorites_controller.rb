@@ -1,4 +1,5 @@
 class PostFavoritesController < ApplicationController
+  
   def create
     @post = Post.find(params[:post_id])
     current_user.post_favorites.create(post_id: params[:post_id])
@@ -14,4 +15,5 @@ class PostFavoritesController < ApplicationController
         format.js{render :destroy}
       end
   end
+  
 end

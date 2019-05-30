@@ -18,7 +18,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :description, :admin, :avatar, :image_url])
   end
 
-  # def not_authenticate_user
-  #     redirect_to musics_index_path unless user_signed_in?
-  # end
 end

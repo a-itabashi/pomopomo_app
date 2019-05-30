@@ -1,4 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  
   include CarrierWave::MiniMagick
   storage :fog
   process :resize_to_limit => [150, 150]
@@ -8,6 +9,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end 
+    if Rails.env.test?
+      "uploads_#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
+  end
+   
 end

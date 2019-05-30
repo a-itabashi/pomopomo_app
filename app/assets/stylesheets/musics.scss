@@ -1,6 +1,7 @@
 .top_slide {
     display: none;
 }
+
 .top_slide.slick-initialized {
     display: block;
 }
@@ -26,7 +27,6 @@
   height:40px;
 }
 
-
 .slide_button{
   margin: 0;
   padding: 0;
@@ -38,11 +38,13 @@
   -moz-appearance: none;
   appearance: none;
 }
+
 .slide-arrow{
   position: absolute;
   top: 50%;
   margin-top: -15px;
 }
+
 .prev-arrow{
   left: -40px;
   width: 0;

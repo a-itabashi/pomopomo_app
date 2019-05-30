@@ -21,22 +21,19 @@ module MusicsHelper
 
   def create_or_update_studies    
     if Study.where("user_id = ? and start_at = ?", current_user.id, Date.today).present?
-        study = Study.where("user_id = ? and start_at = ?", current_user.id, Time.zone.today).first
-        study_set = study.set
-        study_set = study_set + 1
-        study.update_attribute :set, study_set
+      study = Study.where("user_id = ? and start_at = ?", current_user.id, Time.zone.today).first
+      study_set = study.set
+      study_set += 1 
+      study.update_attribute :set, study_set
     else
-      study = Study.new
-      study.user_id = current_user.id
-      study.set = 1
-      study.start_at = Date.today
+      study = Study.new(user_id: current_user.id, set: 1, start_at: Date.today)
       study.save!
     end
   end
 
   def create_or_not_musics
     if Music.where("title = ? ", @title).pluck(:id).present?
-        music_id = Music.where("title = ? ", @title).pluck(:id)[0]
+      music_id = Music.where("title = ? ", @title).pluck(:id)[0]
     else
       music_id = create_musics
     end
@@ -44,10 +41,7 @@ module MusicsHelper
 
   def create_musics  
     unless Music.where("title = ?", @title).present?
-      music = Music.new
-      music.title = @title
-      music.image_url = @image_url
-      music.music_url = @music_url
+      music = Music.new(title: @title, image_url: @image_url, music_url: @music_url)
       music.save!
       music.id
     end

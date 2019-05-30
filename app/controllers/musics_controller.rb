@@ -23,13 +23,11 @@ class MusicsController < ApplicationController
     @image_url = params[:image_url]
     @music_url = params[:music_url]
   
-
     create_or_not_musics
     current_user.music_histories.create(music_id: create_or_not_musics)
 
     @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
     @post = Post.new
-
   end
 
   def rest
@@ -45,6 +43,7 @@ class MusicsController < ApplicationController
     @musics = current_user.music_histories.order(created_at: :desc).page(params[:page]).per(10)
     @created_at = current_user.music_histories.pluck(:created_at).sort!.reverse!
   end
+  
 end
 
 

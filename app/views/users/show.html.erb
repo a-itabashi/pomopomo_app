@@ -1,12 +1,10 @@
 <% provide(:title, "プロフィール") %>
 <h1 class="text-center form_font"><%= @user.name %>さんのプロフィール</h1>
 &nbsp
-<!-- Oauth認証の場合 -->
 <div class="text-center">
   <% if @user.provider.present? %>
     <%= image_tag @user.image_url, size: "100x100", class: "circle_image" if @user.image_url %>
   <% end %>
-  <!-- Oauth認証で無い場合 -->
   <% unless @user.provider.present? %>  
     <%= image_tag(@user.avatar.url,class: "circle_image") if @user.avatar && @user.avatar.url %>
   <% end %>

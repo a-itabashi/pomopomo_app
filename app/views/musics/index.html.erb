@@ -13,7 +13,7 @@
   </div>
 </div>
 <hr>
-<!-- スライドショー -->
+
 <h2 class="trend_music">Trend Music</h2>
 <div class="row justify-content-center">
   <div class="col-md-offset-1 col-md-10  col-md-offset-1">
@@ -33,16 +33,15 @@
 </div>
 
 <div id="mask" class="hidden">
-    <section id="modal" class="hidden">
-      <%= render "shared/how" %>
-      <div id="close">
-        閉じる
-      </div>
-    </section>
-  </div>
-
-
+  <section id="modal" class="hidden">
+    <%= render "shared/how" %>
+    <div id="close">
+      閉じる
+    </div>
+  </section>
+</div>
 <hr>
+
 <h2 class="search_music">Search Result</h2>
 <h4 class="search_music">(検索結果が表示されます)</h4>
 <div class="row justify-content-center">
@@ -58,44 +57,45 @@
 
 <script type="text/javascript">
 document.addEventListener("turbolinks:load",function(){
-    $(function(){
-      $('.top_slide').slick({
-        accessibility: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        speed: 3000,
-        pauseOnHover: true,
-        cssEase: 'ease',
-        dots: false,
-        infinite: true,
-        vertical: false,
-        swipe: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        centerMode: true,
-        arrows: true,
-        prevArrow: '<button class="slide_button slide-arrow prev-arrow"></button>',
-        nextArrow: '<button class="slide_button slide-arrow next-arrow"></button>',
-        responsive: [
-         {
-           breakpoint: 1024, // 768~1023px以下のサイズに適用
-              settings: {
-                 slidesToShow:2,
-                 slidesToScroll: 1,
-              }
-          }, {
-            breakpoint: 768, // 480〜767px以下のサイズに適用
-              settings: {
-                 slidesToShow:1,
-                 slidesToScroll: 1,
-                 centerMode: true,
-                 centerPadding: '10px',
-                 arrows: false,
-               }
-           }
-        ]
-      });
+  $(function(){
+    $('.top_slide').slick({
+      accessibility: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed: 3000,
+      pauseOnHover: true,
+      cssEase: 'ease',
+      dots: false,
+      infinite: true,
+      vertical: false,
+      swipe: true,
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      centerMode: true,
+      arrows: true,
+      prevArrow: '<button class="slide_button slide-arrow prev-arrow"></button>',
+      nextArrow: '<button class="slide_button slide-arrow next-arrow"></button>',
+      responsive: [
+      {
+        breakpoint: 1024, 
+        settings: {
+          slidesToShow:2,
+          slidesToScroll: 1,
+        }
+      }, 
+      {
+        breakpoint: 768, 
+        settings: {
+          slidesToShow:1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '10px',
+          arrows: false,
+        }
+      }
+      ]
     });
+  });
 });
 </script>
 
