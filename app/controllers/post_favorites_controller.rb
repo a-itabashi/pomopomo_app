@@ -15,4 +15,5 @@ class PostFavoritesController < ApplicationController
         format.js{render :destroy}
       end
   end
+  
 end

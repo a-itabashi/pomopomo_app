@@ -32,5 +32,3 @@ RSpec.describe Post, type: :model do
     end 
   end
 end
-
-# https://blog.eq8.eu/til/factory-bot-trait-for-active-storange-has_attached.html
