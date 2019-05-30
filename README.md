@@ -1,5 +1,5 @@
 # アプリ名：pomopomo(ポモポモ)
-### URL: <a href="https://pomopomo.tk/" target="_blank">https://pomopomo.tk/</a>
+### URL: https://pomopomo.tk/
 
 ## 動作確認用アカウント
 - メールアドレス: `test@gmail.com`
@@ -78,11 +78,3 @@ https://docs.google.com/spreadsheets/d/1kW1E_9vfWvSI4gremHJSaXveBnxkVhreBCJPVDsd
 
 ## ワイヤーフレームワーク
 https://docs.google.com/spreadsheets/d/1kW1E_9vfWvSI4gremHJSaXveBnxkVhreBCJPVDsd1IY/edit#gid=371446136
-
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script language="JavaScript">
-$(document).ready( function () {
-    $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
-})
-</script>
