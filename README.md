@@ -1,5 +1,5 @@
 # アプリ名：pomopomo(ポモポモ)
-### URL: https://pomopomo.tk/{:target="_blank"}
+### URL: <a href="https://pomopomo.tk/" target="_blank">https://pomopomo.tk/</a>
 
 ## 動作確認用アカウント
 - メールアドレス: `test@gmail.com`
