@@ -12,137 +12,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= favicon_link_tag('favicon.ico') %>
   </head>
-    <body class="top_body">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> fadeOut_alert"><%= message %></div>
-      <% end %>
-      <div class="top_container">
-        <div class="space">
-          <div class="title">POMO POMO</div>
+  <body class="top_body">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %> fadeOut_alert"><%= message %></div>
+    <% end %>
+    <div class="top_container">
+      <div class="space">
+        <div class="title">POMO POMO</div>
         <div class="subtitle"> 25 minutes run!  AND  5 minutes break!</div>
-
         <div class="text-center top_clock">
           <div id="timer">25:00</div>
         </div>
-
-      <div class="text-center">
-        <%= link_to 'Twitterアカウントでログイン', user_twitter_omniauth_authorize_path, class: "fab fa-twitter btn btn-primary btn-lg" %>
+        <div class="text-center">
+          <%= link_to 'Twitterアカウントでログイン', user_twitter_omniauth_authorize_path, class: "fab fa-twitter btn btn-primary btn-lg" %>
+        </div>
+        &nbsp
+        <div class="text-center">
+          <%= link_to 'Googleアカウントでログイン', user_google_omniauth_authorize_path, class: "fab fa-google btn btn-danger btn-lg" %>
+        </div>
+        &nbsp
+        <div class="text-center">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn-lg" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+        </div>
       </div>
-      &nbsp
-      <div class="text-center">
-        <%= link_to 'Googleアカウントでログイン', user_google_omniauth_authorize_path, class: "fab fa-google btn btn-danger btn-lg" %>
-      </div>
-      &nbsp
-      <div class="text-center">
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn-lg" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+      <div id="open">
+        アプリの使い方
       </div>
     </div>
-    <div id="open">
-      アプリの使い方
+    <div id="mask" class="hidden">
+      <section id="modal" class="hidden">
+        <%= render "shared/how" %>
+        <div id="close">
+          閉じる
+        </div>
+      </section>
     </div>
-  </div>
-  <div id="mask" class="hidden">
-    <section id="modal" class="hidden">
-      <%= render "shared/how" %>
-      <div id="close">
-        閉じる
-      </div>
-    </section>
-  </div>
+    <script type="text/javascript">
+      document.addEventListener("turbolinks:load", function(){
+        let timer = document.getElementById('timer');
+        let min = document.getElementById('min');
+        let sec = document.getElementById('sec');
+        let startTime;
+        let timeLeft;
+        let timeToCountDown = 60 * 1000 * 25;
+        let timerId;
+        let isRunning = false;
 
-  <script type="text/javascript">
-    document.addEventListener("turbolinks:load", function(){
-
-    let timer = document.getElementById('timer');
-    let min = document.getElementById('min');
-    let sec = document.getElementById('sec');
-    let startTime;
-    let timeLeft;
-    let timeToCountDown = 60 * 1000 * 25;
-    let timerId;
-    let isRunning = false;
-
-    function countDown(){
-      timerId = setTimeout(function(){
-        timeLeft = timeToCountDown - (Date.now() - startTime);
-        if(timeLeft < 0){
-          isRunning = false;
-          clearTimeout(timerId);
-          timeLeft = 0;
-          timeToCountDown = 0;
-          updateTimer(timeLeft);
-          return
+        function countDown(){
+          timerId = setTimeout(function(){
+            timeLeft = timeToCountDown - (Date.now() - startTime);
+            if(timeLeft < 0){
+              isRunning = false;
+              clearTimeout(timerId);
+              timeLeft = 0;
+              timeToCountDown = 0;
+              updateTimer(timeLeft);
+              return
+            }
+            updateTimer(timeLeft)
+            countDown();
+          },10);
         }
-        updateTimer(timeLeft)
-        countDown();
-      },10);
-    }
 
-    function updateTimer(t){
-      let d = new Date(t);
-      let m = d.getMinutes();
-      let s = d.getSeconds();
-      m = ('0' + m).slice(-2);
-      s = ('0' + s).slice(-2);
-      let timerString = m + ":" + s;
-      timer.textContent = timerString;
-    }
+        function updateTimer(t){
+          let d = new Date(t);
+          let m = d.getMinutes();
+          let s = d.getSeconds();
+          m = ('0' + m).slice(-2);
+          s = ('0' + s).slice(-2);
+          let timerString = m + ":" + s;
+          timer.textContent = timerString;
+        }
 
-    function timer_start(){
-      if (isRunning === false){
-        isRunning = true;
-        startTime = Date.now();
-        countDown();
-      }else{
-        isRunning = false;
-        timeToCountDown = timeLeft;
-        clearTimeout(timerId);
-      }
+        function timer_start(){
+          if (isRunning === false){
+            isRunning = true;
+            startTime = Date.now();
+            countDown();
+          }else{
+            isRunning = false;
+            timeToCountDown = timeLeft;
+            clearTimeout(timerId);
+          }
 
-    }
-    window.onload = timer_start;
+        }
 
-    $(document).ready(function(){
-    let mouseX, mouseY;
-    let ww = $( window ).width();
-    let wh = $( window ).height();
-    let traX, traY;
-    $(document).mousemove(function(e){
-      mouseX = e.pageX;
-      mouseY = e.pageY;
-      traX = ((4 * mouseX) / 570) + 40;
-      traY = ((4 * mouseY) / 570) + 50;
-      console.log(traX);
-      $(".title").css({"background-position": traX + "%" + traY + "%"});
-    });
-  });
-    setTimeout("$('.fadeOut_alert').fadeOut('slow')", 3000) 
-    
+        window.onload = timer_start;
 
-  const open = document.getElementById('open');
-  const close = document.getElementById('close');
-  const modal = document.getElementById('modal');
-  const mask = document.getElementById('mask');
+        $(document).ready(function(){
+          let mouseX, mouseY;
+          let ww = $( window ).width();
+          let wh = $( window ).height();
+          let traX, traY;
+          $(document).mousemove(function(e){
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+            traX = ((4 * mouseX) / 570) + 40;
+            traY = ((4 * mouseY) / 570) + 50;
+            console.log(traX);
+            $(".title").css({"background-position": traX + "%" + traY + "%"});
+          });
+         });
+        setTimeout("$('.fadeOut_alert').fadeOut('slow')", 3000) 
+        
+        const open = document.getElementById('open');
+        const close = document.getElementById('close');
+        const modal = document.getElementById('modal');
+        const mask = document.getElementById('mask');
 
-  open.addEventListener('click', function(){
-    modal.classList.remove("hidden");
-    mask.classList.remove("hidden");
-  });
+        open.addEventListener('click', function(){
+          modal.classList.remove("hidden");
+          mask.classList.remove("hidden");
+        });
 
-  close.addEventListener('click', function(){
-    modal.classList.add("hidden");
-    mask.classList.add("hidden");
+        close.addEventListener('click', function(){
+          modal.classList.add("hidden");
+          mask.classList.add("hidden");
+        });
 
-  });
-
-  mask.addEventListener('click', function(){
-    close.click();
-  });
-
-
-
-    });
-  </script>
+        mask.addEventListener('click', function(){
+          close.click();
+        });
+      });
+    </script>
   </body>
 </html>

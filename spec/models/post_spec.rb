@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) {FactoryBot.create :post}
+  let(:post) {FactoryBot.create(:post)}
 
   it "FactoryBotの検証(投稿、添付ファイルがあれば有効な状態かどうか)" do
     post

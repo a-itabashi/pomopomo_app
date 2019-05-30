@@ -1,38 +1,35 @@
 <div class="form_font" id>
 <% posts.each do |post| %>
+  <div>
     <div>
-      <div>
-        <% user = User.find_by(id: post.user_id) %>
-        <%= link_to(user_path(user), style: "color:black;")  do %>
-          <!-- Oauth認証の場合 -->
-          <% if user.provider.present? %>
-            <%= image_tag user.image_url, size: "50x50",class: "circle_image" if user.image_url %>
-          <% end %>
-          <!-- Oauth認証で無い場合 -->
-          <% unless user.provider.present? %>  
-            <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
-          <% end %>
-          <span class="post_name"><%= user.name %></span>
+      <% user = User.find_by(id: post.user_id) %>
+      <%= link_to(user_path(user), style: "color:black;")  do %>
+        <% if user.provider.present? %>
+          <%= image_tag user.image_url, size: "50x50",class: "circle_image" if user.image_url %>
         <% end %>
-      </div>
-      <div class="post_image text-center">
-        <%= image_tag(post.post_image.url) if post.post_image && post.post_image.url %>        
-      </div>
-      <div class="post_content">
-        <%= post.content %>
-      </div>
-      <div class="post_created_at">
-        <em><%= post.created_at.strftime("%Y年%m月%d日　%-H時%-M分%-S秒") %></em>
-        <!-- いいね機能 -->
-        &nbsp
-        <span id="likes_buttons_<%= post.id %>">
-          <%= render partial: 'post_favorites/like', locals: { post: post} %>
-        </span>
-        <% if current_user.id == post.user_id %>
-          <%= link_to "削除する", post_path(post), method: :delete, data: {confirm: "削除して宜しいですか?"}, class: "btn btn-danger" %>
+        <% unless user.provider.present? %>  
+          <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
         <% end %>
-      </div>
+        <span class="post_name"><%= user.name %></span>
+      <% end %>
     </div>
-    <hr>
+    <div class="post_image text-center">
+    <%= image_tag(post.post_image.url) if post.post_image && post.post_image.url %>        
+    </div>
+    <div class="post_content">
+    <%= post.content %>
+    </div>
+    <div class="post_created_at">
+      <em><%= post.created_at.strftime("%Y年%m月%d日　%-H時%-M分%-S秒") %></em>
+      &nbsp
+      <span id="likes_buttons_<%= post.id %>">
+        <%= render partial: 'post_favorites/like', locals: { post: post} %>
+      </span>
+      <% if current_user.id == post.user_id %>
+        <%= link_to "削除する", post_path(post), method: :delete, data: {confirm: "削除して宜しいですか?"}, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
 <% end %>
 </div>

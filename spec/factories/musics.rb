@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :music do
-    title { "MyString" }
-    image_url { "MyString" }
-    music_url { "MyString" }
+    title { "テストの音楽" }
+    image_url { "test.image_com" }
+    music_url { "test.image_com" }
   end
 end

@@ -79,16 +79,16 @@ RSpec.feature "Users", type: :feature do
         end
       end
       context "管理者の場合" do
-        scenario "プロフィールを見れるかどうか" do
+        scenario "他人のプロフィールを見れるかどうか" do
           after_login_admin
           click_on "ユーザー一覧"
-          all('tbody tr')[0].click_on "詳細"
+          all('tbody tr')[1].click_on "詳細"
           expect(page).to have_content "test_userさんのプロフィール"
         end
-        scenario "プロフィールを編集できないようになっているかどうか" do
+        scenario "他人のプロフィールを編集できないようになっているかどうか" do
           after_login_admin
           click_on "ユーザー一覧"
-          all('tbody tr')[0].click_on "詳細"
+          all('tbody tr')[1].click_on "詳細"
           expect(page).to_not have_content  "プロフィールを編集"
         end
         scenario "ユーザーを削除できるかどうか" do
@@ -99,7 +99,7 @@ RSpec.feature "Users", type: :feature do
         end
       end
       context "他人の場合" do
-        scenario "プロフィールを見れるか" do
+        scenario "管理者のプロフィールを見れるか" do
           after_login_user
           visit user_path(admin_user.id)
           expect(page).to have_content  "adminさんのプロフィール"

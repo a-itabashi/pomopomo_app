@@ -14,11 +14,11 @@
   <div class="col-md-offset-1 col-md-10 col-md-offset-1">
     <h2 class="text-center"><%= @title %></h2>
     <div class="text-center embed-responsive embed-responsive-21by9">
-    <iframe class="embed-responsive-item" id='iframe' width="560" height="315" 
-      src="<%= @music_url %>"
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
+      <iframe class="embed-responsive-item" id='iframe' width="560" height="315" 
+        src="<%= @music_url %>"
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </div>
@@ -31,22 +31,16 @@
 
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
-  'use strict'
-
   let timer = document.getElementById('timer');
   let min = document.getElementById('min');
   let sec = document.getElementById('sec');
   let reset = document.getElementById('reset');
   let start = document.getElementById('start');
-
   let audio = document.getElementById('audio');
-
-
   let iframe = document.getElementById('iframe');
-
   let startTime;
   let timeLeft;
-  let timeToCountDown = 1000 * 60 * 0.2
+  let timeToCountDown = 1000 * 60 * 25;
   let timerId;
   let isRunning = false;
 
@@ -60,11 +54,9 @@ document.addEventListener("turbolinks:load", function(){
         timeLeft = 0;
         timeToCountDown = 0;
         updateTimer(timeLeft);
-
         console.log("音楽ストップ");
         iframe.remove();
         location.href="/musics/rest";
-
         return;
       }
       updateTimer(timeLeft)
@@ -85,13 +77,11 @@ document.addEventListener("turbolinks:load", function(){
 
   start.addEventListener("click", function(){
     if (isRunning === false){
-      isRunning = true;
-      
+      isRunning = true;      
       start.style.display="none";
       min.style.display="none";
       sec.style.display="none";
       reset.style.display="none";
-
       startTime = Date.now();
       countDown();
     }else{
@@ -100,11 +90,9 @@ document.addEventListener("turbolinks:load", function(){
       timeToCountDown = timeLeft;
       clearTimeout(timerId);
     }
-
     setTimeout(function(){
       audio.play();
-    }, (timeToCountDown - 5000))
-
+    }, (timeToCountDown - 6000))
   });
 
   min.addEventListener("click", function(){
@@ -133,6 +121,5 @@ document.addEventListener("turbolinks:load", function(){
     timeToCountDown = 0;
     updateTimer(timeToCountDown);
   });
-
 });
 </script>

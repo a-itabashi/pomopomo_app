@@ -4,4 +4,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @studies = @user.studies
   end
+  
 end

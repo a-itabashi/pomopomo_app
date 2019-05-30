@@ -11,17 +11,13 @@
 
 <script type="text/javascript">
 document.addEventListener("turbolinks:load", function(){
-
   let timer = document.getElementById('timer');
   let startTime;
   let timeLeft;
-
-  let timeToCountDown = 60 * 100;
-  let timeToRest = 60 * 100;
+  let timeToCountDown = 1000 * 60 * 5;
   let timerId;
   let stopId
   let isRunning = false;
-
   let show_time = document.getElementById('show_time');
 
   function countDown(){
@@ -34,10 +30,8 @@ document.addEventListener("turbolinks:load", function(){
         timeLeft = 0;
         timeToCountDown = 0;
         updateTimer(timeLeft);
-
         console.log("音楽ストップ");
         location.href="/musics/index";
-
         return;
       }
       updateTimer(timeLeft)
@@ -68,7 +62,7 @@ document.addEventListener("turbolinks:load", function(){
     }
     setTimeout(function(){
       audio.play();
-    }, (timeToCountDown - 5000))
+    }, (timeToCountDown - 6000))
   }
 
   window.onload = timer_start(); 
@@ -76,6 +70,5 @@ document.addEventListener("turbolinks:load", function(){
   window.addEventListener('popstate', function (e) {
     clearTimeout(timerId);
   });
-
 });
 </script>

@@ -3,9 +3,9 @@
   <div id="error_explanation">
     <h2><%= @post.errors.count %>件のエラーがあります。</h2>
     <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
@@ -15,46 +15,43 @@
 <script type="text/javascript">
 $(document).on('turbolinks:load', function(){
   $(document).ready(function () {
-    var view_box = $('.img_avatar');
-     
+    let view_box = $('.img_avatar');
+
     $(".file").on('change', function(){
-       var fileprop = $(this).prop('files')[0],
-           find_img = $(this).next('img'),
-           fileRdr = new FileReader();
-       
-       if(find_img.length){
-          find_img.nextAll().remove();
-          find_img.remove();
-       }
-       
-      var img = '<img width="100" alt="" class="img_view"><a href="#" class="img_del">プレビューを削除する</a>';
+      let fileprop = $(this).prop('files')[0],
+      find_img = $(this).next('img'),
+      fileRdr = new FileReader();
+
+      if(find_img.length){
+        find_img.nextAll().remove();
+        find_img.remove();
+      }
+
+      let img = '<img width="100" alt="" class="img_view"><a href="#" class="img_del">プレビューを削除する</a>';
       view_box.append(img);
 
-       
       fileRdr.onload = function() {    
         view_box.find('img').attr('src', fileRdr.result);
         img_del(view_box); 
       }
-      fileRdr.readAsDataURL(fileprop);  
 
+      fileRdr.readAsDataURL(fileprop);  
 
       if($(".img_view").length){
         $(".file").hide();
       }
 
       $(".your_preview").show();
-
     });
-     
-    function img_del(target)
-    {
-       target.find("a.img_del").on('click',function(){
-         $(this).parent().find('input[type=file]').val('');
-         $(this).parent().find('.img_view, br').remove();
-         $(this).remove();
-         $("#post_post_image").val("");
-         $(".file").show();
-         $(".your_preview").hide();
+
+    function img_del(target){
+      target.find("a.img_del").on('click',function(){
+        $(this).parent().find('input[type=file]').val('');
+        $(this).parent().find('.img_view, br').remove();
+        $(this).remove();
+        $("#post_post_image").val("");
+        $(".file").show();
+        $(".your_preview").hide();
 
         return false;
       });

@@ -4,25 +4,25 @@
 <div class="x-scroll">
   <table class="table form_font">
     <thead class="text-center">
-      <th>プロフィール画像</th>
-      <th>ユーザー名</th>
-      <th>メールアドレス</th>
-      <th>管理者権限</th>
-      <th>Oauth認証先</th>
-      <th></th>
-      <th></th>
+      <tr>
+        <th>プロフィール画像</th>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th>管理者権限</th>
+        <th>Oauth認証先</th>
+        <th></th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td class="align-middle text-center">
-          <!-- Oauth認証の場合 -->
+        <td class="align-middle text-center">       
           <% if user.provider.present? %>
-          <%= image_tag user.image_url, size: "50x50" %>
+            <%= image_tag user.image_url, size: "50x50" %>
           <% end %>
-          <!-- Oauth認証で無い場合 -->
           <% unless user.provider.present? %>  
-          <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
+            <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
           <% end %>
         </td>
         <td class="align-middle"><%= user.name %></td>
@@ -37,5 +37,5 @@
     <% end %>
     </tbody>
   </table>
-  <%= paginate @users %>
 </div>
+<%= paginate @users %>
