@@ -14,7 +14,8 @@
       <% end %>
     </div>
     <div class="post_image">
-    <%= image_tag(post.post_image.url, class: "post_image_size") if post.post_image && post.post_image.url %>        
+    <%= image_tag(post.post_image.url, class: "post_image_size") if post.post_image && post.post_image.url %>  
+    <%= link_to "元のサイズで画像を表示する", post.post_image.url, target: "_blank" %>    
     </div>
     <div class="post_content">
     <%= post.content %>
