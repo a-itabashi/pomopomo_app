@@ -11,7 +11,7 @@ RSpec.feature "Musics", type: :feature do
   scenario "音楽を検索できるかどうか",js: true do
     fill_in 'q', with: "作業用"
     click_on "Search"
-    expect(page).to have_content "作業用BGM"
+    expect(page).to have_content "作業用MIX!!"
   end
 
   scenario "検索した音楽をクリックしたら再生履歴に反映されるかどうか",js: true do
