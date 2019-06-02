@@ -43,7 +43,8 @@ RSpec.feature "Users", type: :feature do
     end
     scenario "退会ができるかどうか" do
       after_login_user
-      click_on "退会"
+      click_on "プロフィール"
+      click_on "退会手続きをする"
       click_on "ログイン"
       fill_in "メールアドレス", with: "test@example.com"
       fill_in "パスワード", with: "testtest"
