@@ -13,7 +13,7 @@
         <span class="post_name"><%= user.name %></span>
       <% end %>
     </div>
-    <div class="post_image text-center">
+    <div class="post_image">
     <%= image_tag(post.post_image.url) if post.post_image && post.post_image.url %>        
     </div>
     <div class="post_content">
