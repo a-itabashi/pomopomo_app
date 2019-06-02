@@ -108,6 +108,4 @@ RSpec.feature "Users", type: :feature do
       end
     end
   end
-
-
 end
