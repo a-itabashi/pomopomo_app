@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <div class="post_image">
-    <%= image_tag(post.post_image.url) if post.post_image && post.post_image.url %>        
+    <%= image_tag(post.post_image.url, class: "post_image_size") if post.post_image && post.post_image.url %>        
     </div>
     <div class="post_content">
     <%= post.content %>
