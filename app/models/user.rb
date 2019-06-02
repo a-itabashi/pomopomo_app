@@ -10,8 +10,8 @@ class User < ApplicationRecord
   before_save { email.downcase! }
 
   has_many :studies, dependent: :destroy
-  has_many :music_histories
-  has_many :posts
+  has_many :music_histories, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
 
   mount_uploader :avatar, ImageUploader
