@@ -5,7 +5,7 @@
       <%= image_tag user.image_url, size: "100x100", class: "circle_image" if user.image_url %>
     <% end %>
     <% unless user.provider.present? %>  
-      <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
+      <%= image_tag(user.avatar.url,class: "circle_image user_image_size") if user.avatar && user.avatar.url %>
     <% end %>
     <%= f.text_field :content, placeholder: "いまpomoしてる?", class: "form-control-lg" %>
     <div class="text-right post_image">
