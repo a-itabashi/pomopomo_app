@@ -17,20 +17,20 @@
     <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td class="align-middle text-center">       
+        <td class="align-middle text-center admin_index" width="5%">       
           <% if user.provider.present? %>
             <%= image_tag user.image_url, size: "50x50" %>
           <% end %>
           <% unless user.provider.present? %>  
-            <%= image_tag(user.avatar.url,class: "circle_image") if user.avatar && user.avatar.url %>
+            <%= image_tag(user.avatar.url,class: "circle_image admin_image_size") if user.avatar && user.avatar.url %>
           <% end %>
         </td>
-        <td class="align-middle"><%= user.name %></td>
-        <td class="align-middle"><%= user.email %></td>
-        <td class="align-middle text-center"><%= user.admin ? "有り" : "ー" %></td>
-        <td class="align-middle text-center"><%= user.provider.present? ? user.provider : "ー" %></td>
-        <td class="align-middle text-center"><%= link_to "詳細", user %></td>
-        <td class="align-middle text-center"><%= link_to "削除", admin_user_path(user), 
+        <td class="align-middle" width="10%"><%= truncate(user.name, length: 10) %></td>
+        <td class="align-middle" width="15%"><%= truncate(user.email, length: 15) %></td>
+        <td class="align-middle text-center" width="5%"><%= user.admin ? "有り" : "ー" %></td>
+        <td class="align-middle text-center" width="5%"><%= user.provider.present? ? user.provider : "ー" %></td>
+        <td class="align-middle text-center" width="5%"><%= link_to "詳細", user %></td>
+        <td class="align-middle text-center" width="5%"><%= link_to "削除", admin_user_path(user), 
           method: :delete, data: {confirm: "削除して宜しいですか？"} %>
         </td>
       </tr>

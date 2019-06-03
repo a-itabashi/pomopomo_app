@@ -26,7 +26,7 @@
     <% end %>
     <% unless @user.provider.present? %>
       <%= f.label :avatar, "プロフィール画像" %><br />      
-      <%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %> 
+      <%= image_tag(@user.avatar.url,class: "circle_image user_image_size") if @user.avatar && @user.avatar.url %> 
     &nbsp 
     <span><%= f.file_field :avatar, class: "file" %></span>
     <% end %>
