@@ -106,6 +106,12 @@ RSpec.feature "Users", type: :feature do
           expect(page).to have_content  "adminさんのプロフィール"
         end
       end
+      scenario "他人のプロフィール画面上に退会手続きのボタンが表示されないかどうか" do
+        after_login_admin
+        click_on "ユーザー一覧"
+        all('tbody tr')[1].click_on "詳細"
+        expect(page).to_not have_content  "退会手続きをする"
+      end
     end
   end
 end
