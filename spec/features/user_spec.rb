@@ -95,7 +95,7 @@ RSpec.feature "Users", type: :feature do
         scenario "ユーザーを削除できるかどうか" do
           after_login_admin
           click_on "ユーザー一覧"
-          all('tbody tr')[0].click_on "削除"
+          all('tbody tr')[1].click_on "削除"
           expect(page).to have_content  "ユーザーを削除しました"
         end
       end
@@ -111,6 +111,18 @@ RSpec.feature "Users", type: :feature do
         click_on "ユーザー一覧"
         all('tbody tr')[1].click_on "詳細"
         expect(page).to_not have_content  "退会手続きをする"
+      end
+      context "管理者以外が管理者ページへアクセス出来ないかどうか" do
+        scenario "ユーザー一覧画面にはアクセス出来ないかどうか" do
+          after_login_user
+          visit admin_users_path
+          expect(page).to have_content "アクセス権限がありません"
+        end
+        scenario "ユーザー新規登録画面にはアクセス出来ないかどうか" do
+          after_login_user
+          visit admin_users_path
+          expect(page).to have_content "アクセス権限がありません"
+        end
       end
     end
   end
