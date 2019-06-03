@@ -26,7 +26,7 @@
           <% end %>
         </td>
         <td class="align-middle" width="10%"><%= truncate(user.name, length: 10) %></td>
-        <td class="align-middle" width="15%"><%= truncate(user.email, length: 15) %></td>
+        <td class="align-middle" width="15%"><%= truncate(user.email, length: 20) %></td>
         <td class="align-middle text-center" width="5%"><%= user.admin ? "有り" : "ー" %></td>
         <td class="align-middle text-center" width="5%"><%= user.provider.present? ? user.provider : "ー" %></td>
         <td class="align-middle text-center" width="5%"><%= link_to "詳細", user %></td>
