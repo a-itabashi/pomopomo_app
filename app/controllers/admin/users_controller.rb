@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :only_allow_admin
+
   def index
     @users = User.all.page(params[:page]).per(10).order(created_at: :desc)
   end
@@ -31,6 +33,13 @@ class Admin::UsersController < ApplicationController
 
   def set_params
      params.require(:user).permit(:name, :email, :description, :password, :password_confirmation, :admin, :uid)
+  end
+
+  def only_allow_admin
+    unless current_user.try(:admin?)
+      flash[:alert] = "アクセス権限がありません"
+      redirect_to musics_index_path
+    end
   end
 
 end
