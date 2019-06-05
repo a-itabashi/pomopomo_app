@@ -21,8 +21,12 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
+    if @post.destroy
+      respond_to do |format|
+        format.js{render :index}
+      end
+    end
   end
 
   private
