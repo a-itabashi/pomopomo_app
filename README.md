@@ -1,11 +1,20 @@
 # アプリ名：pomopomo(ポモポモ)
 ### URL: https://pomopomo.tk/
 
-## 動作確認用アカウント
+## 動作確認用アカウント(一般ユーザー)
 - メールアドレス: `test@gmail.com`
-- パスワード: `testtest`    
+- パスワード: `testtest`  
 
 ※Twitter/Googleアカウントからもログインが可能です
+
+## 動作確認用アカウント(管理者ユーザー)
+- メールアドレス: `admin@gmail.com`  
+- パスワード: `adminadmin`  
+
+<img width="800" alt="admin_img" src="https://user-images.githubusercontent.com/11900792/59001818-0d629500-884b-11e9-968f-0b13da342e5a.png">
+
+※セキュリティの観点から、予告なく本アカウントを削除する場合もあります。
+ご了承ください。
 
 ## 概要
 ポモドーロ・テクニック(25分作業・５分休憩のサイクル)を活用した作業集中アプリ。
