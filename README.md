@@ -87,3 +87,16 @@ https://docs.google.com/spreadsheets/d/1kW1E_9vfWvSI4gremHJSaXveBnxkVhreBCJPVDsd
 
 ## ワイヤーフレームワーク
 https://docs.google.com/spreadsheets/d/1kW1E_9vfWvSI4gremHJSaXveBnxkVhreBCJPVDsd1IY/edit#gid=371446136
+
+## Rspecテスト実行時のコマンド
+gem 'spring-commands-rspec'を活用した実行環境を使うために、以下のコマンドを実行。  
+※ `$ bundle exec rspec`でも実行可能
+
+```
+$ bundle exec spring binstub rspec
+```
+```
+$ bin/rspec
+```
+
+
