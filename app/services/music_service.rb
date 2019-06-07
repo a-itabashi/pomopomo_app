@@ -1,5 +1,4 @@
-module MusicsHelper
-  
+module MusicService
   def youtube_api
     if params[:q] != ""
         q = params[:q]
@@ -46,5 +45,4 @@ module MusicsHelper
       music.id
     end
   end
-  
 end
