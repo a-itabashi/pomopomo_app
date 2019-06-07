@@ -2,7 +2,8 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'google/apis/youtube_v3'
-include MusicsHelper
+include MusicService
+
 class MusicsController < ApplicationController
   before_action :authenticate_user!
   
@@ -26,7 +27,7 @@ class MusicsController < ApplicationController
     create_or_not_musics
     current_user.music_histories.create(music_id: create_or_not_musics)
 
-    @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
     @post = Post.new
   end
 
@@ -43,23 +44,6 @@ class MusicsController < ApplicationController
     @musics = current_user.music_histories.order(created_at: :desc).page(params[:page]).per(10)
     @created_at = current_user.music_histories.pluck(:created_at).sort!.reverse!
   end
-  
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
