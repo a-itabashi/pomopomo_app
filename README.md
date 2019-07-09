@@ -8,8 +8,8 @@
 ※Twitter/Googleアカウントからもログインが可能です
 
 ## 動作確認用アカウント(管理者ユーザー)
-- メールアドレス: `admin@gmail.com`  
-- パスワード: `adminadmin`  
+- メールアドレス: 非公開  
+- パスワード: 非公開  
 
 <img width="800" alt="admin_img" src="https://user-images.githubusercontent.com/11900792/59001818-0d629500-884b-11e9-968f-0b13da342e5a.png">
 
