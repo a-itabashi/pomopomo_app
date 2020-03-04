@@ -23,7 +23,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem "simple_calendar", "~> 2.0"
